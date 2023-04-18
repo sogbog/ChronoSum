@@ -1,9 +1,11 @@
 export default{
     light:{
-        titles: "#00FF00"
+        globalBackground: "#FCE6FF",
+        titles: "#171D1C"
     },
 
     dark:{
-        titles: "#004400"
+        globalBackground: "#130019",
+        titles: "#EFF6E0"
     }
 }

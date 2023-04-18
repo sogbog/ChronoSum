@@ -5,10 +5,18 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    transition: color 0.5s;
+    transition: background-color 0.5s;
 }
 
 :root{
     font-size: 62.5%;
+}
+
+body{
+    background-color: ${({theme}) => theme.globalBackground};
+    color: ${({theme}) => theme.titles}
 }
 
 a{
