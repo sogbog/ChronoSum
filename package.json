@@ -10,12 +10,26 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "vite": "^4.2.0"
-  }
+  },
+  "description": "web app to add time to time",
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sogbog/ChronoSum.git"
+  },
+  "author": "Andre L G Sampaio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sogbog/ChronoSum/issues"
+  },
+  "homepage": "https://github.com/sogbog/ChronoSum#readme"
 }
