@@ -5,6 +5,7 @@ import { AppRoutes } from "../routes"
 import { useState } from 'react'
 import { ThemeButton } from './ThemeSwitcher.style'
 import {MdOutlineDarkMode, MdOutlineLightMode} from "react-icons/md"
+import { ContextWrapper } from '../hooks/options'
 
 export function ThemeSwitcher(){
 
@@ -20,7 +21,9 @@ export function ThemeSwitcher(){
             <ThemeButton onClick={() => handleTheme()}>
                 {currentTheme == themes.dark ? <MdOutlineDarkMode/> : <MdOutlineLightMode/>}
             </ThemeButton>
-            <AppRoutes/>
+            <ContextWrapper>
+                <AppRoutes/>
+            </ContextWrapper>
         </ThemeProvider> 
     )
 }
