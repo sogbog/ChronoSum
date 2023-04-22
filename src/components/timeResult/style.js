@@ -5,7 +5,7 @@ export const Container = styled.div`
     flex-direction: column;
 
     input{
-        width: 16rem;
+        width: 18rem;
         height: 8rem;
         border: none;
         border-radius: 8px;

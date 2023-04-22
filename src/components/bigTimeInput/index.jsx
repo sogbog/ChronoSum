@@ -1,6 +1,5 @@
 import { Container } from "./style";
 import { useOptions } from "../../hooks/options";
-import { useState } from "react";
 
 export function BigTimeInput({name, state, onChange}){
     const {enabledFields} = useOptions()
@@ -12,6 +11,7 @@ export function BigTimeInput({name, state, onChange}){
             value={enabledFields.includes(name + "s") ? state : "--"}
             disabled={enabledFields.includes(name + "s") ? false : true}
             onChange={onChange}/>
+            <span id={"Initial" + name + "Warning"} className="Warning"></span>
         </Container>
     )
 }

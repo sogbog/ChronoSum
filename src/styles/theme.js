@@ -3,10 +3,11 @@ export default{
         globalBackground: "#FCE6FF",
         backgroundGradient: "radial-gradient(circle at 50% 58.5%, rgba(49,233,129,0.15) 0%, rgba(58, 175, 185,0.15) 20%, rgba(252,230,255,0) 50%);",
         titles: "#171D1C",
-        inputBackground: "#978899",
+        inputBackground: "#BAA6BD",
         bigInputBackground: "#BAA6BD",
         inputText: "#166638",
-        clockOpacity: 0.1
+        clockOpacity: 0.1,
+        buttonBackground: "#FF9FD9"
     },
 
     dark:{
@@ -16,6 +17,7 @@ export default{
         inputBackground: "#0D0013",
         bigInputBackground: "#07000D",
         inputText: "#00F250",
-        clockOpacity: 0.3
+        clockOpacity: 0.3,
+        buttonBackground: "#320056"
     }
 }

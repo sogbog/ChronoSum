@@ -41,9 +41,23 @@ export const Container = styled.div`
     }
 
     #options{
-        margin: 7.5rem 0 0 10rem;
+        margin: 6rem 0 0 10rem;
         display: flex;
+        align-items: center;
         gap: 2rem;
+    }
+
+    #ClearAll{
+        padding: 5px 8px;
+
+        background-color: ${({theme}) => theme.buttonBackground};
+
+        border: 1px solid ${({theme}) => theme.inputText};
+        border-radius: 8px;
+        
+        font-family: "Monda";
+        font-size: 1.8rem;
+        color: ${({theme}) => theme.titles};
     }
 
     #App{
