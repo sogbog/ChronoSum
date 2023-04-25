@@ -1,4 +1,4 @@
-import {Container, MainFunctions} from "./style"
+import {Container, MainFunctions, Date} from "./style"
 import { TimeInput } from "../../components/TimeInput"
 import { BigTimeInput } from "../../components/BigTimeInput"
 import { TimeResult } from "../../components/TimeResult"
@@ -32,6 +32,10 @@ export function Home(){
   const [minutesResult, setMinutesResult] = useState("")
   const [secondsResult, setSecondsResult] = useState("")
   const [milisecondsResult, setMilisecondsResult] = useState("")
+  const [daysResult, setDaysResult] = useState("")
+  const [monthsResult, setMonthsResult] = useState("")
+  const [yearsResult, setYearsResult] = useState("")
+  const [resultComplement, setResultComplement] = useState("")
 
   function clearInputs(){
     setInitialHours("")
@@ -55,6 +59,8 @@ export function Home(){
     time.minutesToAdd = 0
     time.secondsToAdd = 0
     time.milisecondsToAdd = 0
+
+    calculateTime()
   }
 
   function handleStates(value, caller){
@@ -214,7 +220,7 @@ export function Home(){
   }
 
   function calculateTime(checked, caller){
-    let years = 0, months = 0, days = 0, hours = 0, minutes = 0, seconds = 0, miliseconds = 0
+    let years = 0, months = 0, days = 0, hours = 0, minutes = 0, seconds = 0, miliseconds = 0, complement = ""
       
     if(caller){
       switch (caller) {
@@ -249,11 +255,6 @@ export function Home(){
         miliseconds = time.initialMiliseconds + time.milisecondsToAdd
       }
 
-      // caller != "Hours" ? hours = time.initialHours + time.hoursToAdd : ""
-      // caller != "Minutes" ? minutes = time.initialMinutes + time.minutesToAdd : ""
-      // caller != "Seconds" ? seconds = time.initialSeconds + time.secondsToAdd : ""
-      // caller != "Miliseconds" ? miliseconds = time.initialMiliseconds + time.milisecondsToAdd : ""
-
     } else{
       enabledFields.includes("Hours") ? hours = time.initialHours + time.hoursToAdd : ""
       enabledFields.includes("Minutes") ? minutes = time.initialMinutes + time.minutesToAdd : ""
@@ -261,9 +262,8 @@ export function Home(){
       enabledFields.includes("Miliseconds") ? miliseconds = time.initialMiliseconds + time.milisecondsToAdd : ""
     }
 
-    
 
-    if (miliseconds > 999){
+    if(miliseconds > 999){
       const wholeSeconds = Math.floor(miliseconds/1000)
       const extraMiliseconds = miliseconds % 1000
       miliseconds = extraMiliseconds
@@ -274,7 +274,7 @@ export function Home(){
       miliseconds -= wholeSeconds*1000
     }
     
-    if (seconds > 59){
+    if(seconds > 59){
       const wholeMinutes = Math.floor(seconds/60)
       const extraSeconds = seconds % 60
       seconds = extraSeconds
@@ -285,7 +285,7 @@ export function Home(){
       seconds -= wholeMinutes*60
     }
 
-    if (minutes > 59){
+    if(minutes > 59){
       const wholeHours = Math.floor(minutes/60)
       const extraMinutes = minutes % 60
       minutes = extraMinutes
@@ -296,7 +296,42 @@ export function Home(){
       minutes -= wholeHours*60
     }
 
-  if(hours != 0) {
+    if(hours > 23){
+      const wholeDays = Math.floor(hours/24)
+      const extraHours = hours % 24
+      hours = extraHours
+      days = wholeDays
+      complement = "after"
+    }else if(hours < 0){
+      const wholeDays = Math.floor(hours/24)
+      days -= wholeDays
+      hours -= wholeDays*24
+      complement = "before"
+    }
+
+    if(days > 29){
+      const wholeMonths = Math.floor(days/30)
+      const extraDays = days % 30
+      days = extraDays
+      months = wholeMonths
+    }else if(days < 0){
+      const wholeMonths = Math.floor(days/30)
+      months -= wholeMonths
+      days -= wholeMonths*30
+    }
+
+    if(months > 11){
+      const wholeYears = Math.floor(months/12)
+      const extraMonths = months % 12
+      months = extraMonths
+      years = wholeYears
+    }else if(years < 0){
+      const wholeYears = Math.floor(months/12)
+      years -= wholeYears
+      months -= wholeYears*12
+    }
+
+  if(hours != 0){
     setHoursResult(hours)
   }else if((time.hoursToAdd != ""|| time.initialHours != "") &
     (!caller || caller != "Hours" || (caller == "Hours" & checked))){
@@ -305,7 +340,7 @@ export function Home(){
     setHoursResult("")
   }
 
-  if(minutes != 0) {
+  if(minutes != 0){
     setMinutesResult(minutes)
   }else if((time.minutesToAdd != "" || time.initialMinutes != "") &
   (!caller || caller != "Minutes" || (caller == "Minutes" & checked))){
@@ -314,7 +349,7 @@ export function Home(){
     setMinutesResult("")
   }
 
-  if(seconds !=0) {
+  if(seconds !=0){
     setSecondsResult(seconds)
   }else if((time.secondsToAdd != ""|| time.initialSeconds != "") &
   (!caller || caller != "Seconds" || (caller == "Seconds" & checked))){
@@ -323,13 +358,42 @@ export function Home(){
     setSecondsResult("")
   }
 
-  if(miliseconds !=0) {
+  if(miliseconds !=0){
     setMilisecondsResult(miliseconds)
   }else if((time.milisecondsToAdd != ""|| time.initialMiliseconds != "") &
   (!caller || caller != "Miliseconds" || (caller == "Miliseconds" & checked))){
     setMilisecondsResult("0")
   }else{
     setMilisecondsResult("")
+  }
+
+  if(days != 0){
+    days > 1 ? setDaysResult(`${days} days`) : setDaysResult(`The day`)
+  } else if(months != 0 || years != 0){
+    setDaysResult("0 days")
+  }else{
+    setDaysResult("")
+  }
+
+  if(months != 0){
+    months > 1 ? setMonthsResult(`${months} months`) : setMonthsResult(`${months} month`)
+  } else if(years != 0){
+    setMonthsResult("0 months")
+  }else{
+    setMonthsResult("")
+  }
+
+  if(years != 0){
+    years > 1 ? setYearsResult(`${years} years`) : setYearsResult(`${years} year`)
+  } else{
+    setYearsResult("")
+  }
+
+
+  if(days != 0 || months != 0 || years != 0){
+    setResultComplement(complement)    
+  }else{
+    setResultComplement("")
   }
 }
 
@@ -387,6 +451,13 @@ export function Home(){
 
           {enabledFields.includes("Miliseconds") && <TimeInput name="Miliseconds" state={milisecondsToAdd} onChange={e =>  handleStates(e.target.value, 'milisecondsToAdd')}/>}
         </MainFunctions>
+        
+        <Date id="date">
+          {daysResult && <p id="Days">{daysResult}</p>}
+          {monthsResult && <p id="Months">{monthsResult}</p>}
+          {yearsResult && <p id="Years">{yearsResult}</p>}
+          {resultComplement && <span>{resultComplement}</span>}
+        </Date>
 
         <div id="ResultingTime">
           <label htmlFor="ResultingTime" id="ResultingTimeSideLabel">Resulting Time</label>

@@ -110,5 +110,30 @@ export const MainFunctions = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 8rem
+    gap: 8rem;
+`
+
+export const Date = styled.div`
+    position: absolute;
+    right: 43rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+
+    width: 22rem;
+    max-height: 68.8rem;
+
+    overflow-wrap: break-word;
+    overflow-y: auto;
+
+    p, span{
+        font-size: 4rem;
+        font-family: "Orbitron";
+        color: ${({theme}) => theme.inputText};
+    }
+
+    ::-webkit-scrollbar {
+            width: 0;
+        }
 `
