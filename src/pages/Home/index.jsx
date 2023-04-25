@@ -213,83 +213,125 @@ export function Home(){
     calculateTime()
   }
 
-  function calculateTime(){
-    let years = 0, months = 0, days = 0, hours, minutes, seconds, miliseconds
-      hours = time.initialHours + time.hoursToAdd
-      minutes = time.initialMinutes + time.minutesToAdd
-      seconds = time.initialSeconds + time.secondsToAdd
-      miliseconds = time.initialMiliseconds + time.milisecondsToAdd
-
-      if (miliseconds > 999){
-        const wholeSeconds = Math.floor(miliseconds/1000)
-        const extraMiliseconds = miliseconds % 1000
-        miliseconds = extraMiliseconds
-        seconds += wholeSeconds
-      }else if(miliseconds < 0){
-        const wholeSeconds = Math.floor(miliseconds/1000)
-        seconds += wholeSeconds
-        miliseconds -= wholeSeconds*1000
-      }
+  function calculateTime(checked, caller){
+    let years = 0, months = 0, days = 0, hours = 0, minutes = 0, seconds = 0, miliseconds = 0
       
-      if (seconds > 59){
-        const wholeMinutes = Math.floor(seconds/60)
-        const extraSeconds = seconds % 60
-        seconds = extraSeconds
-        minutes += wholeMinutes
-      }else if(seconds < 0){
-        const wholeMinutes = Math.floor(seconds/60)
-        minutes += wholeMinutes
-        seconds -= wholeMinutes*60
+    if(caller){
+      switch (caller) {
+        case "Hours":
+          checked ? hours = time.initialHours + time.hoursToAdd : hours = 0
+        break;
+
+        case "Minutes":
+          checked ? minutes = time.initialMinutes + time.minutesToAdd : minutes = 0
+        break;
+
+        case "Seconds":
+          checked ? seconds = time.initialSeconds + time.secondsToAdd : seconds = 0
+        break;
+
+        case "Miliseconds":
+          checked ? miliseconds = time.initialMiliseconds + time.milisecondsToAdd : miliseconds = 0
+        break;
+      
       }
 
-      if (minutes > 59){
-        const wholeHours = Math.floor(minutes/60)
-        const extraMinutes = minutes % 60
-        minutes = extraMinutes
-        hours += wholeHours
-      }else if(minutes < 0){
-        const wholeHours = Math.floor(minutes/60)
-        hours += wholeHours
-        minutes -= wholeHours*60
+      if(caller != "Hours" & enabledFields.includes("Hours")){
+        hours = time.initialHours + time.hoursToAdd
+      }
+      if(caller != "Minutes" & enabledFields.includes("Minutes")){
+        minutes = time.initialMinutes + time.minutesToAdd
+      }
+      if(caller != "Seconds" & enabledFields.includes("Seconds")){
+        seconds = time.initialSeconds + time.secondsToAdd
+      }
+      if(caller != "Miliseconds" & enabledFields.includes("Miliseconds")){
+        miliseconds = time.initialMiliseconds + time.milisecondsToAdd
       }
 
-    if(hours != 0) {
-      setHoursResult(hours)
-    }else if(time.hoursToAdd != ""|| time.initialHours != "" ||
-     time.milisecondsToAdd < -999 || time.milisecondsToAdd > 999 ||
-     time.milisecondsToAdd < -999 || time.milisecondsToAdd > 999){
-      setHoursResult("0")
-    }else{
-      setHoursResult("")
+      // caller != "Hours" ? hours = time.initialHours + time.hoursToAdd : ""
+      // caller != "Minutes" ? minutes = time.initialMinutes + time.minutesToAdd : ""
+      // caller != "Seconds" ? seconds = time.initialSeconds + time.secondsToAdd : ""
+      // caller != "Miliseconds" ? miliseconds = time.initialMiliseconds + time.milisecondsToAdd : ""
+
+    } else{
+      enabledFields.includes("Hours") ? hours = time.initialHours + time.hoursToAdd : ""
+      enabledFields.includes("Minutes") ? minutes = time.initialMinutes + time.minutesToAdd : ""
+      enabledFields.includes("Seconds") ? seconds = time.initialSeconds + time.secondsToAdd : ""
+      enabledFields.includes("Miliseconds") ? miliseconds = time.initialMiliseconds + time.milisecondsToAdd : ""
     }
 
-    if(minutes != 0) {
-      setMinutesResult(minutes)
-    }else if(time.minutesToAdd != "" || time.initialMinutes != "" ||
-    time.secondsToAdd < -60 || time.secondsToAdd > 60 ||
-    time.milisecondsToAdd < -999 || time.milisecondsToAdd > 999){
-      setMinutesResult("0")
-    }else{
-      setMinutesResult("")
+    
+
+    if (miliseconds > 999){
+      const wholeSeconds = Math.floor(miliseconds/1000)
+      const extraMiliseconds = miliseconds % 1000
+      miliseconds = extraMiliseconds
+      seconds += wholeSeconds
+    }else if(miliseconds < 0){
+      const wholeSeconds = Math.floor(miliseconds/1000)
+      seconds += wholeSeconds
+      miliseconds -= wholeSeconds*1000
+    }
+    
+    if (seconds > 59){
+      const wholeMinutes = Math.floor(seconds/60)
+      const extraSeconds = seconds % 60
+      seconds = extraSeconds
+      minutes += wholeMinutes
+    }else if(seconds < 0){
+      const wholeMinutes = Math.floor(seconds/60)
+      minutes += wholeMinutes
+      seconds -= wholeMinutes*60
     }
 
-    if(seconds !=0) {
-      setSecondsResult(seconds)
-    }else if(time.secondsToAdd != ""|| time.initialSeconds != "" ||
-    time.milisecondsToAdd < -999 || time.milisecondsToAdd > 999){
-      setSecondsResult("0")
-    }else{
-      setSecondsResult("")
+    if (minutes > 59){
+      const wholeHours = Math.floor(minutes/60)
+      const extraMinutes = minutes % 60
+      minutes = extraMinutes
+      hours += wholeHours
+    }else if(minutes < 0){
+      const wholeHours = Math.floor(minutes/60)
+      hours += wholeHours
+      minutes -= wholeHours*60
     }
 
-    if(miliseconds !=0) {
-      setMilisecondsResult(miliseconds)
-    }else if(time.milisecondsToAdd != ""|| time.initialMiliseconds != ""){
-      setMilisecondsResult("0")
-    }else{
-      setMilisecondsResult("")
-    }
+  if(hours != 0) {
+    setHoursResult(hours)
+  }else if((time.hoursToAdd != ""|| time.initialHours != "") &
+    (!caller || caller != "Hours" || (caller == "Hours" & checked))){
+    setHoursResult("0")
+  }else{
+    setHoursResult("")
   }
+
+  if(minutes != 0) {
+    setMinutesResult(minutes)
+  }else if((time.minutesToAdd != "" || time.initialMinutes != "") &
+  (!caller || caller != "Minutes" || (caller == "Minutes" & checked))){
+    setMinutesResult("0")
+  }else{
+    setMinutesResult("")
+  }
+
+  if(seconds !=0) {
+    setSecondsResult(seconds)
+  }else if((time.secondsToAdd != ""|| time.initialSeconds != "") &
+  (!caller || caller != "Seconds" || (caller == "Seconds" & checked))){
+    setSecondsResult("0")
+  }else{
+    setSecondsResult("")
+  }
+
+  if(miliseconds !=0) {
+    setMilisecondsResult(miliseconds)
+  }else if((time.milisecondsToAdd != ""|| time.initialMiliseconds != "") &
+  (!caller || caller != "Miliseconds" || (caller == "Miliseconds" & checked))){
+    setMilisecondsResult("0")
+  }else{
+    setMilisecondsResult("")
+  }
+}
 
   function flashWarning(selector, message){
     const warning = document.querySelector(selector)
@@ -310,13 +352,13 @@ export function Home(){
         </div>
 
         <div id="options">
-          <CheckBox name="Hours"/>
+          <CheckBox name="Hours" calculate={calculateTime}/>
           
-          <CheckBox name="Minutes"/>
+          <CheckBox name="Minutes" calculate={calculateTime}/>
           
-          <CheckBox name="Seconds"/>
+          <CheckBox name="Seconds" calculate={calculateTime}/>
           
-          <CheckBox name="Miliseconds"/>
+          <CheckBox name="Miliseconds" calculate={calculateTime}/>
 
           <button type="button" id="ClearAll" onClick={() => clearInputs()}>Clear Inputs</button>
         </div>
@@ -327,7 +369,7 @@ export function Home(){
       <div id="App">
         <div id="InitialTime">
           <label htmlFor="InitialTime" id="InitialTimeSideLabel">Initial Time</label>
-          <BigTimeInput name="Hour" state={initialHours} onChange={e => handleStates(e.target.value, 'initialHours')}/>
+          <BigTimeInput name="Hour" state={initialHours} onChange={e => handleStates(e.target.value, 'initialHours')} />
 
           <BigTimeInput name="Minute" state={initialMinutes} onChange={e =>  handleStates(e.target.value, 'initialMinutes')}/>
 

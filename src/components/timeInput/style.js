@@ -35,8 +35,8 @@ export const Container = styled.div`
         font-family: "Monda";
         font-size: 1.8rem;
         position: absolute;
-        bottom: 0.7rem;
-        left: 10rem;
+        top: -3rem;
+        right: -5rem;
         width: max-content;
         
 

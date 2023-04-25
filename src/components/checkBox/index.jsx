@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { BiCheckbox, BiCheckboxSquare } from "react-icons/bi"
 import { useOptions } from "../../hooks/options"
 
-export function CheckBox({name}){
+export function CheckBox({name , calculate}){
     const {setEnabledFields} = useOptions()
     const [checked, setChecked] = useState(true)
    
@@ -20,6 +20,8 @@ export function CheckBox({name}){
         }else{
             setEnabledFields(prevState => prevState.filter(field => field != name))
         }
+
+        calculate(checked, name)
     }
 
     return(
