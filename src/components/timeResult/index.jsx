@@ -1,10 +1,10 @@
 import { Container } from "./style";
 
-export function TimeResult({name}){
+export function TimeResult({name, state}){
     return(
         <Container>
-            <label htmlFor="name">{name}</label>
-            <input type="text" id={name} disabled/>
+            <label htmlFor={"Resulting" + name}>{name}</label>
+            <span id={"Resulting" + name}>{state}</span>
         </Container>
     )
 }

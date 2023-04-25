@@ -1,11 +1,22 @@
 import {Container, MainFunctions} from "./style"
-import { TimeInput } from "../../components/timeInput"
-import { BigTimeInput } from "../../components/bigTimeInput"
-import { TimeResult } from "../../components/timeResult"
-import { CheckBox } from "../../components/checkBox"
+import { TimeInput } from "../../components/TimeInput"
+import { BigTimeInput } from "../../components/BigTimeInput"
+import { TimeResult } from "../../components/TimeResult"
+import { CheckBox } from "../../components/CheckBox"
 import roman_clock from "../../assets/clock_face_roman.svg"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useOptions } from "../../hooks/options"
+
+let time = {
+  initialHours: 0,
+  initialMinutes: 0,
+  initialSeconds: 0,
+  initialMiliseconds: 0,
+  hoursToAdd: 0,
+  minutesToAdd: 0,
+  secondsToAdd: 0,
+  milisecondsToAdd: 0,
+}
 
 export function Home(){
   const { enabledFields } = useOptions()
@@ -17,7 +28,10 @@ export function Home(){
   const [minutesToAdd, setMinutesToAdd] = useState("")
   const [secondsToAdd, setSecondsToAdd] = useState("")
   const [milisecondsToAdd, setMilisecondsToAdd] = useState("")
-
+  const [hoursResult, setHoursResult] = useState("")
+  const [minutesResult, setMinutesResult] = useState("")
+  const [secondsResult, setSecondsResult] = useState("")
+  const [milisecondsResult, setMilisecondsResult] = useState("")
 
   function clearInputs(){
     setInitialHours("")
@@ -28,6 +42,19 @@ export function Home(){
     setMinutesToAdd("")
     setSecondsToAdd("")
     setMilisecondsToAdd("")
+    setHoursResult("")
+    setMinutesResult("")
+    setSecondsResult("")
+    setMilisecondsResult("")
+
+    time.initialHours = 0
+    time.initialMinutes = 0
+    time.initialSeconds = 0
+    time.initialMiliseconds = 0
+    time.hoursToAdd = 0
+    time.minutesToAdd = 0
+    time.secondsToAdd = 0
+    time.milisecondsToAdd = 0
   }
 
   function handleStates(value, caller){
@@ -44,8 +71,16 @@ export function Home(){
           return
         }
 
-        value == "" ? setInitialHours("") : setInitialHours(parseInt(value))
+        if(value != ""){
+          setInitialHours(parseInt(value))
+          time.initialHours = parseInt(value)
+        }else{
+          setInitialHours("")
+          time.initialHours = 0
+        }
+        
         break
+
 
       case 'initialMinutes':
         if(value > 59 || value < 0){
@@ -58,8 +93,15 @@ export function Home(){
           return
         }
 
-        value == "" ? setInitialMinutes("") : setInitialMinutes(parseInt(value))
+        if(value != ""){
+          setInitialMinutes(parseInt(value))
+          time.initialMinutes = parseInt(value)
+        }else{
+          setInitialMinutes("")
+          time.initialMinutes = 0
+        }
         break
+
 
       case 'initialSeconds':
         if(value > 59 || value < 0){
@@ -72,8 +114,15 @@ export function Home(){
           return
         }
 
-        value == "" ? setInitialSeconds("") : setInitialSeconds(parseInt(value))
+        if(value != ""){
+          setInitialSeconds(parseInt(value))
+          time.initialSeconds = parseInt(value)
+        }else{
+          setInitialSeconds("")
+          time.initialSeconds = 0
+        }
         break
+
 
       case 'initialMiliseconds':
         if(value > 999 || value < 0){
@@ -86,8 +135,15 @@ export function Home(){
           return
         }
 
-        value == "" ? setInitialMiliseconds("") : setInitialMiliseconds(parseInt(value))
+        if(value != ""){
+          setInitialMiliseconds(parseInt(value))
+          time.initialMiliseconds = parseInt(value)
+        }else{
+          setInitialMiliseconds("")
+          time.initialMiliseconds = 0
+        }
         break
+
 
       case 'hoursToAdd':
         if(value != 0 & isNaN(parseInt(value)) & value != "-"){
@@ -95,14 +151,15 @@ export function Home(){
           return
         }
 
-        if(value == ""){
-          setHoursToAdd("")
-        }else if(value == "-"){
-          setHoursToAdd("-")
-        }else{
+        if(value != "" & value != "-"){
           setHoursToAdd(parseInt(value))
+          time.hoursToAdd = parseInt(value)
+        }else{
+          value == "-" ? setHoursToAdd("-") : setHoursToAdd("")
+          time.hoursToAdd = 0
         }
         break
+
 
       case 'minutesToAdd':
         if(value != 0 & isNaN(parseInt(value)) & value != "-"){
@@ -110,14 +167,15 @@ export function Home(){
           return
         }
 
-        if(value == ""){
-          setMinutesToAdd("")
-        }else if(value == "-"){
-          setMinutesToAdd("-")
-        }else{
+        if(value != "" & value != "-"){
           setMinutesToAdd(parseInt(value))
+          time.minutesToAdd = parseInt(value)
+        }else{
+          value == "-" ? setMinutesToAdd("-") : setMinutesToAdd("")
+          time.minutesToAdd = 0
         }
         break
+
 
       case 'secondsToAdd':
         if(value != 0 & isNaN(parseInt(value)) & value != "-"){
@@ -125,14 +183,15 @@ export function Home(){
           return
         }
 
-        if(value == ""){
-          setSecondsToAdd("")
-        }else if(value == "-"){
-          setSecondsToAdd("-")
-        }else{
+        if(value != "" & value != "-"){
           setSecondsToAdd(parseInt(value))
+          time.secondsToAdd = parseInt(value)
+        }else{
+          value == "-" ? setSecondsToAdd("-") : setSecondsToAdd("")
+          time.secondsToAdd = 0
         }
         break
+
 
       case 'milisecondsToAdd':
         if(value != 0 & isNaN(parseInt(value)) & value != "-"){
@@ -140,16 +199,96 @@ export function Home(){
           return
         }
 
-        if(value == ""){
-          setMilisecondsToAdd("")
-        }else if(value == "-"){
-          setMilisecondsToAdd("-")
-        }else{
+        if(value != "" & value != "-"){
           setMilisecondsToAdd(parseInt(value))
+          time.milisecondsToAdd = parseInt(value)
+        }else{
+          value == "-" ? setMilisecondsToAdd("-") : setMilisecondsToAdd("")
+          time.milisecondsToAdd = 0
         }
+
         break
     }
 
+    calculateTime()
+  }
+
+  function calculateTime(){
+    let years = 0, months = 0, days = 0, hours, minutes, seconds, miliseconds
+      hours = time.initialHours + time.hoursToAdd
+      minutes = time.initialMinutes + time.minutesToAdd
+      seconds = time.initialSeconds + time.secondsToAdd
+      miliseconds = time.initialMiliseconds + time.milisecondsToAdd
+
+      if (miliseconds > 999){
+        const wholeSeconds = Math.floor(miliseconds/1000)
+        const extraMiliseconds = miliseconds % 1000
+        miliseconds = extraMiliseconds
+        seconds += wholeSeconds
+      }else if(miliseconds < 0){
+        const wholeSeconds = Math.floor(miliseconds/1000)
+        seconds += wholeSeconds
+        miliseconds -= wholeSeconds*1000
+      }
+      
+      if (seconds > 59){
+        const wholeMinutes = Math.floor(seconds/60)
+        const extraSeconds = seconds % 60
+        seconds = extraSeconds
+        minutes += wholeMinutes
+      }else if(seconds < 0){
+        const wholeMinutes = Math.floor(seconds/60)
+        minutes += wholeMinutes
+        seconds -= wholeMinutes*60
+      }
+
+      if (minutes > 59){
+        const wholeHours = Math.floor(minutes/60)
+        const extraMinutes = minutes % 60
+        minutes = extraMinutes
+        hours += wholeHours
+      }else if(minutes < 0){
+        const wholeHours = Math.floor(minutes/60)
+        hours += wholeHours
+        minutes -= wholeHours*60
+      }
+
+    if(hours != 0) {
+      setHoursResult(hours)
+    }else if(time.hoursToAdd != ""|| time.initialHours != "" ||
+     time.milisecondsToAdd < -999 || time.milisecondsToAdd > 999 ||
+     time.milisecondsToAdd < -999 || time.milisecondsToAdd > 999){
+      setHoursResult("0")
+    }else{
+      setHoursResult("")
+    }
+
+    if(minutes != 0) {
+      setMinutesResult(minutes)
+    }else if(time.minutesToAdd != "" || time.initialMinutes != "" ||
+    time.secondsToAdd < -60 || time.secondsToAdd > 60 ||
+    time.milisecondsToAdd < -999 || time.milisecondsToAdd > 999){
+      setMinutesResult("0")
+    }else{
+      setMinutesResult("")
+    }
+
+    if(seconds !=0) {
+      setSecondsResult(seconds)
+    }else if(time.secondsToAdd != ""|| time.initialSeconds != "" ||
+    time.milisecondsToAdd < -999 || time.milisecondsToAdd > 999){
+      setSecondsResult("0")
+    }else{
+      setSecondsResult("")
+    }
+
+    if(miliseconds !=0) {
+      setMilisecondsResult(miliseconds)
+    }else if(time.milisecondsToAdd != ""|| time.initialMiliseconds != ""){
+      setMilisecondsResult("0")
+    }else{
+      setMilisecondsResult("")
+    }
   }
 
   function flashWarning(selector, message){
@@ -207,12 +346,12 @@ export function Home(){
           {enabledFields.includes("Miliseconds") && <TimeInput name="Miliseconds" state={milisecondsToAdd} onChange={e =>  handleStates(e.target.value, 'milisecondsToAdd')}/>}
         </MainFunctions>
 
-        <div id="FinalTime">
-          <label htmlFor="InitialTime" id="FinalTimeSideLabel">Final Time</label>
-          <TimeResult name="Hour"/>
-          <TimeResult name="Minute"/>
-          <TimeResult name="Second"/>
-          <TimeResult name="Milisecond"/>
+        <div id="ResultingTime">
+          <label htmlFor="ResultingTime" id="ResultingTimeSideLabel">Resulting Time</label>
+          <TimeResult name="Hour" state={hoursResult}/>
+          <TimeResult name="Minute" state={minutesResult}/>
+          <TimeResult name="Second" state={secondsResult}/>
+          <TimeResult name="Milisecond" state={milisecondsResult}/>
         </div>
       </div>
     </Container>

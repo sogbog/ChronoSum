@@ -4,7 +4,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
 
-    input{
+    span{
         width: 18rem;
         height: 8rem;
         border: none;
@@ -18,10 +18,13 @@ export const Container = styled.div`
         text-align: center;
 
         padding: 0 12px 6px 12px;
-    }
 
-    input:focus{
-        outline: 1px solid ${({theme}) => theme.inputText};
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        ::-webkit-scrollbar {
+            width: 0;
+        }
     }
 
     label{

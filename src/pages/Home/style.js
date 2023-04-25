@@ -69,7 +69,7 @@ export const Container = styled.div`
         top: calc(55vh - 450px);
     }
 
-    #InitialTime, #FinalTime{
+    #InitialTime, #ResultingTime{
         position: relative;
         
         display: flex;
@@ -82,7 +82,7 @@ export const Container = styled.div`
         border-radius: 1rem;
     }
 
-    #InitialTimeSideLabel, #FinalTimeSideLabel{
+    #InitialTimeSideLabel, #ResultingTimeSideLabel{
         color: ${({theme}) => theme.inputText};
         font-family: "Orbitron";
         font-size: 2.2rem;
@@ -100,7 +100,7 @@ export const Container = styled.div`
         top: 8.5rem;
     }
 
-    #FinalTimeSideLabel{
+    #ResultingTimeSideLabel{
         position: absolute;
         left: -14px;
         top: 8.5rem; 
