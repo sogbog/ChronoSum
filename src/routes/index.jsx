@@ -5,7 +5,7 @@ export function AppRoutes(){
     return(
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home/>}/>
+                <Route path="/ChronoSum" element={<Home/>}/>
             </Routes>
         </BrowserRouter>
     )
