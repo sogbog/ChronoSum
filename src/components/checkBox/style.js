@@ -25,4 +25,30 @@ export const Container = styled.div`
             color: ${({theme}) => theme.inputText};
         }
     }
+
+//------------------ Media Queries ------------------
+
+    @media(max-width: 1900px){
+
+    }
+
+    @media(max-width: 1200px){
+        input{
+            width: 1.5rem;
+            height: 1.5rem;
+            left: 0px;
+            top: 0px;
+            opacity: 0;
+        }
+    
+        label{
+            font-size: 1.6rem;
+        }
+
+        #checkboxDisplay{
+            svg{
+                font-size: 2.2rem;
+            }
+        }
+    }
 `

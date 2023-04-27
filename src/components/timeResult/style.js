@@ -32,4 +32,39 @@ export const Container = styled.div`
         font-family: "Monda";
         color: ${({theme}) => theme.titles};
     }
+
+//------------------ Media Queries ------------------
+
+    @media(max-width: 1500px){
+        span{
+            width: 16rem;
+            height: 6.5rem;
+
+            font-size: 5rem;
+        }
+
+        label{
+            font-size: 2rem;
+        }
+    }
+
+    @media(max-width: 1200px){
+        span{
+            width: 14rem;
+            height: 6rem;
+        }
+    }    
+
+    @media(max-width: 1000px){
+        span{
+            width: 12rem;
+            height: 5rem;
+
+            font-size: 4rem;
+        }
+
+        label{
+            font-size: 1.6rem;
+        }
+    }
 `

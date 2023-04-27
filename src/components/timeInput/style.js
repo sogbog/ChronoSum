@@ -48,4 +48,30 @@ export const Container = styled.div`
     .active{
         transition: none;
     }
+
+//------------------ Media Queries ------------------
+
+    @media(max-width: 1200px){
+        align-items: center;
+        position: unset;
+
+        input{
+            width: 7rem;
+            height: 3.4rem;
+
+            font-size: 2.3rem;
+
+            padding: 0 3px 1.5px 3px;
+        }
+        
+        label{
+            font-size: 1.6rem;
+        }
+
+        .Warning{
+            font-size: 1.6rem;
+            top: -1rem;
+            right: 30rem;
+        }
+    }    
 `

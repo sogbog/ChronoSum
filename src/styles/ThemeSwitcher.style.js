@@ -12,4 +12,33 @@ export const ThemeButton = styled.button`
         font-size: 5rem;
         color: ${({theme}) => theme.titles};
     }
+
+//------------------ Media Queries ------------------
+
+    @media(max-width: 1500px){
+        right: 2rem;
+        top: 3rem;
+
+        svg{
+            font-size: 4.5rem;
+        }
+    }
+
+    @media(max-width: 1200px){
+        right: 2rem;
+        top: 3rem;
+
+        svg{
+            font-size: 4rem;
+        }
+    }
+
+    @media(max-width: 1000px){
+        right: 2rem;
+        top: 3rem;
+
+        svg{
+            font-size: 4rem;
+        }
+    }
 `
