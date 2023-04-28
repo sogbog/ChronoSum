@@ -157,6 +157,11 @@ export function Home(){
           return
         }
 
+        if(value >= 9007199254740991){
+          flashWarning("#HoursToAddWarning", "Max value reached!")
+          return
+        }
+
         if(value != "" & value != "-"){
           setHoursToAdd(parseInt(value))
           time.hoursToAdd = parseInt(value)
@@ -170,6 +175,11 @@ export function Home(){
       case 'minutesToAdd':
         if(value != 0 & isNaN(parseInt(value)) & value != "-"){
           flashWarning("#MinutesToAddWarning", "Only numbers are allowed")
+          return
+        }
+
+        if(value >= 9007199254740991){
+          flashWarning("#MinutesToAddWarning", "Max value reached!")
           return
         }
 
@@ -189,6 +199,11 @@ export function Home(){
           return
         }
 
+        if(value >= 9007199254740991){
+          flashWarning("#SecondsToAddWarning", "Max value reached!")
+          return
+        }
+
         if(value != "" & value != "-"){
           setSecondsToAdd(parseInt(value))
           time.secondsToAdd = parseInt(value)
@@ -202,6 +217,11 @@ export function Home(){
       case 'milisecondsToAdd':
         if(value != 0 & isNaN(parseInt(value)) & value != "-"){
           flashWarning("#MilisecondsToAddWarning", "Only numbers are allowed")
+          return
+        }
+
+        if(value >= 9007199254740991){
+          flashWarning("#MilisecondsToAddWarning", "Max value reached!")
           return
         }
 
@@ -368,7 +388,7 @@ export function Home(){
   }
 
   if(days != 0){
-    days > 1 ? setDaysResult(`${days} days`) : setDaysResult(`The day`)
+    Math.sqrt(Math.pow(days, 2)) == 1 ? setDaysResult(`The day`): setDaysResult(`${days} days`)
   } else if(months != 0 || years != 0){
     setDaysResult("0 days")
   }else{
@@ -424,11 +444,11 @@ export function Home(){
           
           <CheckBox name="Miliseconds" calculate={calculateTime}/>
 
-          <button type="button" id="ClearAll" onClick={() => clearInputs()}>Clear Inputs</button>
+          <button type="button" id="ClearAllDesktop" onClick={() => clearInputs()}>Clear Inputs</button>
         </div>
       </header>
 
-      <img src={roman_clock} id="ClockBackground" />
+      <img src={roman_clock} id="ClockBackgroundDesktop" />
 
       <div id="App">
         <div id="InitialTime">
@@ -442,6 +462,8 @@ export function Home(){
           <BigTimeInput name="Milisecond" state={initialMiliseconds} onChange={e =>  handleStates(e.target.value, 'initialMiliseconds')}/>
         </div>
 
+        <button type="button" id="ClearAllMobile" onClick={() => clearInputs()}>Clear Inputs</button>
+
         <MainFunctions>
           {enabledFields.includes("Hours") && <TimeInput name="Hours" state={hoursToAdd} onChange={e =>  handleStates(e.target.value, 'hoursToAdd')}/>}
 
@@ -451,6 +473,8 @@ export function Home(){
 
           {enabledFields.includes("Miliseconds") && <TimeInput name="Miliseconds" state={milisecondsToAdd} onChange={e =>  handleStates(e.target.value, 'milisecondsToAdd')}/>}
         </MainFunctions>
+
+        <img src={roman_clock} id="ClockBackgroundMobile" />
         
         <Date id="date">
           {daysResult && <p id="Days">{daysResult}</p>}

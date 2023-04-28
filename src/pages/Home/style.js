@@ -24,7 +24,7 @@ export const Container = styled.div`
         }
     }
 
-    #ClockBackground{
+    #ClockBackgroundDesktop{
         position: absolute;
         z-index: -1;
         width: 700px;
@@ -45,7 +45,7 @@ export const Container = styled.div`
         gap: 2rem;
     }
 
-    #ClearAll{
+    #ClearAllDesktop, #ClearAllMobile{
         padding: 5px 8px;
 
         background-color: ${({theme}) => theme.buttonBackground};
@@ -58,6 +58,10 @@ export const Container = styled.div`
         color: ${({theme}) => theme.titles};
     }
 
+    #ClearAllMobile{
+        display: none;
+    }
+
     #App{
         display: flex;
         justify-content: space-between;
@@ -65,6 +69,10 @@ export const Container = styled.div`
         padding: 0 10rem 0 12rem;
         position: relative;
         top: calc(55vh - 450px);
+
+        #ClockBackgroundMobile{
+            display: none;
+        }
     }
 
     #InitialTime, #ResultingTime{
@@ -158,16 +166,10 @@ export const Container = styled.div`
         }
 
         #options{
-            flex-direction: column;
             margin: 3.5rem 30rem 0 0;
-            gap: 5px;
-            max-height: 8rem;
-
-            flex-wrap: wrap;
-            align-items: flex-start;
         }
 
-        #ClearAll{
+        #ClearAllDesktop{
             padding: 4px 6px;
             font-size: 1.6rem;
         }
@@ -271,26 +273,141 @@ export const Container = styled.div`
         }
     }
 
+    @media(max-width: 800px){
+        >header{
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        #title{
+            align-items: start;
+            margin: 1rem 0 0 1.8rem;
+
+            h1{
+                font-size: 3.5rem;
+                width: max-content;
+            }
+
+            span{
+                font-size: 2rem;
+                margin: 0;
+            }
+        }
+
+        #options{
+            margin: 2rem 0 6rem 1.8rem;
+            padding-right: 2rem;
+            gap: 1.5rem;
+            flex-direction: row;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        #ClearAllDesktop{
+            display: none;
+        }
+
+        #ClearAllMobile{
+            display: unset;
+
+            position: relative;
+            top: 13rem;
+
+            padding: 4px 6px;
+            font-size: 1.6rem;
+        }
+
+        #App{
+            align-items: center;
+            flex-direction: column;
+            gap: 18rem;
+
+            position: relative;
+            top: -21.6rem;
+            padding-bottom: 5rem;
+            background: ${({theme}) => theme.backgroundGradientMobile};
+
+            #ClockBackgroundMobile{
+                display: block;
+                position: absolute;
+                z-index: -1;
+                width: 230px;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                margin: auto auto auto auto;
+                opacity: ${({theme}) => theme.clockOpacity};
+
+                transition: opacity 0.5s;
+            }
+        }
+
+        #InitialTime, #ResultingTime{
+            position: relative;
+            
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+
+            padding: 2rem;
+        }
+
+        #InitialTime{
+            bottom: -21.6rem;
+        }
+        
+        #ResultingTime{
+            top: -18rem;
+        }
+
+        #InitialTimeSideLabel, #ResultingTimeSideLabel{
+            font-size: 2.2rem;
+            writing-mode: unset;
+            text-orientation: unset;
+            letter-spacing: 3px;
+
+            padding: 0 5px;
+        }
+
+        #InitialTimeSideLabel{
+            right: auto;
+            top: -1.5rem;
+        }
+
+        #ResultingTimeSideLabel{
+            left: auto;
+            top: -1.5rem; 
+        }
+    }
+
 //------Clock responsiveness------
 
     @media(max-width: 1500px){
-        #ClockBackground{
+        #ClockBackgroundDesktop{
             width: 500px;
             top: calc(55vh - 220px);
         }
     }
 
     @media(max-width: 1200px){
-        #ClockBackground{
+        #ClockBackgroundDesktop{
             width: 425px;
             top: calc(55vh - 185px);
         }
     }
 
     @media(max-width: 1000px){
-        #ClockBackground{
+        #ClockBackgroundDesktop{
             width: 350px;
             top: calc(55vh - 125px);
+        }
+    }
+
+    @media(max-width: 800px){
+        #ClockBackgroundDesktop{
+            display: none;
         }
     }
 `
@@ -311,6 +428,12 @@ export const MainFunctions = styled.div`
 
     @media(max-width: 1200px){
         gap: 3rem;
+    }
+
+    @media(max-width: 800px){
+        flex-direction: row;
+        flex-wrap: wrap;
+        position: relative;
     }
 `
 
@@ -381,6 +504,22 @@ export const Date = styled.div`
 
         p, span{
             font-size: 1.6rem;
+        }
+    }
+
+    @media(max-width: 800px){
+        position: relative;
+        justify-content: center;
+        right: 0;
+        top: -10rem;
+        gap: 1rem;
+
+        width: 78.15vw;
+
+        overflow-wrap: break-word;
+
+        p{
+            max-width: 6.7rem;
         }
     }
 `

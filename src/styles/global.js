@@ -41,21 +41,29 @@ button:hover, a:hover{
 
 @media(max-width: 1500px){
     body{
-        background: radial-gradient(circle at 50% 60%, rgba(0,242,80,0.1) 0%, rgba(100,5,255,0.1) 14%, rgba(19,0,25,0) 35%);
+        background: ${({theme}) => theme.backgroundGradient1500};
         background-color: ${({theme}) => theme.globalBackground};
     }
 }
 
 @media(max-width: 1200px){
     body{
-        background: radial-gradient(circle at 50% 60%, rgba(0,242,80,0.1) 0%, rgba(100,5,255,0.1) 14%, rgba(19,0,25,0) 35%);
+        background: ${({theme}) => theme.backgroundGradient1200};
         background-color: ${({theme}) => theme.globalBackground};
     }
 }
 
 @media(max-width: 1000px){
     body{
-        background: radial-gradient(circle at 50% 62.5%, rgba(0,242,80,0.1) 0%, rgba(100,5,255,0.1) 12%, rgba(19,0,25,0) 30%);
+        background: ${({theme}) => theme.backgroundGradient1000};
+        background-color: ${({theme}) => theme.globalBackground};
+    }
+}
+
+@media(max-width: 800px){
+    body{
+        background: ${({theme}) => theme.backgroundGradient800};
+        background-repeat: no-repeat;
         background-color: ${({theme}) => theme.globalBackground};
     }
 }

@@ -100,4 +100,11 @@ export const Container = styled.div`
             top: -3.5rem;
         }
     }
+
+    @media(max-width: 800px){
+        .Warning{
+            left: -2.5rem;
+            top: -4.5rem;
+        }
+    }
 `

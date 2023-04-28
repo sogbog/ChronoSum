@@ -41,4 +41,14 @@ export const ThemeButton = styled.button`
             font-size: 4rem;
         }
     }
+
+    @media(max-width: 1000px){
+        right: 1rem;
+        top: 1.5rem;
+        z-index: 1;
+
+        svg{
+            font-size: 3rem;
+        }
+    }
 `

@@ -57,7 +57,7 @@ export const Container = styled.div`
 
     @media(max-width: 1000px){
         span{
-            width: 12rem;
+            width: 12.4rem;
             height: 5rem;
 
             font-size: 4rem;

@@ -4,6 +4,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
+    justify-content: center;
 
     input{
         width: 8rem;
@@ -71,7 +72,18 @@ export const Container = styled.div`
         .Warning{
             font-size: 1.6rem;
             top: -1rem;
-            right: 30rem;
+            left: 43rem;
         }
-    }    
+    }
+
+    @media(max-width: 800px){
+        .Warning{
+            top: -3.5rem;
+            left: 2rem;
+        }
+
+        input{
+            background-color: ${({theme}) => theme.bigInputBackground};
+        }
+    } 
 `
