@@ -1,9 +1,9 @@
 
 # Chrono Sum
 
-A browser-only web app entirely developed by me(including styling) using React.js. The main functionality of this app is to perform various kinds of math operations using time.
+A browser-only web app entirely developed by me(including styling) using React.js. The main functionality of this app is to perform various kinds of math operations using time. Full support for mobile and other resolutions
 
-For now, there is only one tool where you can input a specific time and how much hours, minutes, seconds and miliseconds you want to add to that time(for subtraction use a minus sign). I plan on adding much more to this app before i mark it as done, mainly mobile support, responsiveness(currently only on Full HD 1920X1080 an upwards) and other functionalities.
+For now, there is only one tool where you can input a specific time and how much hours, minutes, seconds and miliseconds you want to add to that time(for subtraction use a minus sign). I plan on adding much more to this app before i mark it as done, mainly other functionalities.
 ## Deploy
 
 You can check out the current version [here](http://sogbog.github.io/ChronoSum)
