@@ -3,9 +3,11 @@ import { TimeInput } from "../../components/TimeInput"
 import { BigTimeInput } from "../../components/BigTimeInput"
 import { TimeResult } from "../../components/TimeResult"
 import { CheckBox } from "../../components/CheckBox"
+import { SliderButton } from "../../components/SliderButton"
 import roman_clock from "../../assets/clock_face_roman.svg"
 import { useState, useEffect } from "react"
 import { useOptions } from "../../hooks/options"
+import { BiCheckboxSquare, BiCheckbox } from "react-icons/bi"
 
 let time = {
   initialHours: 0,
@@ -19,7 +21,7 @@ let time = {
 }
 
 export function Home(){
-  const { enabledFields } = useOptions()
+  const { enabledFields, format, setFormat } = useOptions()
   const [initialHours, setInitialHours] = useState("")
   const [initialMinutes, setInitialMinutes] = useState("")
   const [initialSeconds, setInitialSeconds] = useState("")
@@ -36,6 +38,8 @@ export function Home(){
   const [monthsResult, setMonthsResult] = useState("")
   const [yearsResult, setYearsResult] = useState("")
   const [resultComplement, setResultComplement] = useState("")
+  const [AM_PM, setAM_PM] = useState("AM")
+  const [resultIdentifier, setResultIdentifier] = useState("AM")
 
   function clearInputs(){
     setInitialHours("")
@@ -50,6 +54,7 @@ export function Home(){
     setMinutesResult("")
     setSecondsResult("")
     setMilisecondsResult("")
+    setResultIdentifier("AM")
 
     time.initialHours = 0
     time.initialMinutes = 0
@@ -63,28 +68,110 @@ export function Home(){
     calculateTime()
   }
 
+  function adjustFormat(identifier){
+    if(identifier){
+      setAM_PM(identifier)
+
+      if(identifier == "PM"){
+        if(initialHours == "0" || initialHours == ""){
+          setInitialHours("")
+        }else if(initialHours != "12"){
+          time.initialHours += 12
+        }
+      }
+
+      if(identifier == "AM"){
+        if(initialHours == "12"){
+          setInitialHours("11")
+          time.initialHours = 11
+        } else if(initialHours != ""){
+          time.initialHours -= 12
+        }
+      }
+
+      calculateTime()
+    }else{
+      const checked = document.querySelector("#FormatSlider").checked
+      setFormat(checked)
+
+      if(checked){
+        if(initialHours > 11){
+          initialHours > 12 ? setInitialHours(prevState => prevState - 12) : ""
+          setAM_PM("PM")
+        }
+        if(hoursResult > 11){
+          hoursResult > 12 ? setHoursResult(prevState => prevState - 12) : ""
+          setResultIdentifier("PM")
+        }
+      }else{
+        if(initialHours != ""){
+          if( AM_PM == "PM"){
+            initialHours != 12 ? setInitialHours(prevState => prevState + 12) : ""
+            setAM_PM("AM")
+            setResultIdentifier("AM")
+          }
+          if(resultIdentifier == "PM"){
+              hoursResult != "12" ? setHoursResult(prevState => prevState + 12) : ""
+            }
+        }
+      }
+    }
+  }
+
   function handleStates(value, caller){
 
     switch (caller){
       case 'initialHours':
-        if(value > 23 || value < 0){
-          flashWarning("#InitialHourWarning", "Hour must be a value between 0 and 23")
-          return
-        }
-
         if(value != 0 & isNaN(parseInt(value))){
           flashWarning("#InitialHourWarning", "Only numbers are allowed")
           return
         }
-
-        if(value != ""){
-          setInitialHours(parseInt(value))
-          time.initialHours = parseInt(value)
-        }else{
-          setInitialHours("")
-          time.initialHours = 0
-        }
         
+        if(format){
+          if(AM_PM == "AM"){
+            if(value > 11 || value < 0){
+              flashWarning("#InitialHourWarning", "Hour AM must be between 0 and 11")
+              return
+            }
+
+            if(value != ""){
+              setInitialHours(parseInt(value))
+              time.initialHours = parseInt(value)
+            }else{
+              setInitialHours("")
+              time.initialHours = 0
+            }
+          }
+
+          if(AM_PM == "PM"){
+            if((value > 12 || value < 1) && value != ""){
+              flashWarning("#InitialHourWarning", "Hour PM must be between 1 and 12")
+              return
+            }
+
+            if(value != ""){
+              setInitialHours(parseInt(value))
+              value < 12 ? time.initialHours = parseInt(value) + 12 :  time.initialHours = parseInt(value)
+            }else{
+              setInitialHours("")
+              time.initialHours = 0
+            }
+          }
+
+        }else{
+          if(value > 23 || value < 0){
+            flashWarning("#InitialHourWarning", "Hour must be a value between 0 and 23")
+            return
+          }
+
+          if(value != ""){
+            setInitialHours(parseInt(value))
+            time.initialHours = parseInt(value)
+          }else{
+            setInitialHours("")
+            time.initialHours = 0
+          }
+        }
         break
 
 
@@ -351,6 +438,15 @@ export function Home(){
       months -= wholeYears*12
     }
 
+    if(format){
+      if(hours > 11){
+        hours > 12 ? hours -= 12 : ""
+        setResultIdentifier("PM")
+      }else{
+        setResultIdentifier("AM")
+      }
+    }
+
   if(hours != 0){
     setHoursResult(hours)
   }else if((time.hoursToAdd != ""|| time.initialHours != "") &
@@ -444,7 +540,7 @@ export function Home(){
           
           <CheckBox name="Miliseconds" calculate={calculateTime}/>
 
-          <button type="button" id="ClearAllDesktop" onClick={() => clearInputs()}>Clear Inputs</button>
+          <SliderButton name="Format" opt1="24" opt2="12" id="FormatWrapper" onChange={() => adjustFormat()}/>
         </div>
       </header>
 
@@ -453,6 +549,26 @@ export function Home(){
       <div id="App">
         <div id="InitialTime">
           <label htmlFor="InitialTime" id="InitialTimeSideLabel">Initial Time</label>
+
+          {format == true && <div id="AM-PM_wrapperMobile">
+            <label htmlFor="AM">AM</label>
+
+            <div className="RadioDisplay">
+              {AM_PM == "AM" ?  <BiCheckboxSquare/> : <BiCheckbox/>}
+            </div>
+
+            <input type="radio" id="AM" name="AM-PM" defaultChecked onClick={() => adjustFormat("AM")}/>
+
+
+            <label htmlFor="PM">PM</label>
+
+            <div className="RadioDisplay">
+              {AM_PM == "PM" ?  <BiCheckboxSquare/> : <BiCheckbox/>}
+            </div>
+
+            <input type="radio" id="PM" name="AM-PM" onClick={() => adjustFormat("PM")}/>
+          </div>}
+
           <BigTimeInput name="Hour" state={initialHours} onChange={e => handleStates(e.target.value, 'initialHours')} />
 
           <BigTimeInput name="Minute" state={initialMinutes} onChange={e =>  handleStates(e.target.value, 'initialMinutes')}/>
@@ -472,6 +588,8 @@ export function Home(){
           {enabledFields.includes("Seconds") && <TimeInput name="Seconds" state={secondsToAdd} onChange={e =>  handleStates(e.target.value, 'secondsToAdd')}/>}
 
           {enabledFields.includes("Miliseconds") && <TimeInput name="Miliseconds" state={milisecondsToAdd} onChange={e =>  handleStates(e.target.value, 'milisecondsToAdd')}/>}
+
+          <button type="button" id="ClearAllDesktop" onClick={() => clearInputs()}>Clear Inputs</button>
         </MainFunctions>
 
         <img src={roman_clock} id="ClockBackgroundMobile" />
@@ -485,6 +603,7 @@ export function Home(){
 
         <div id="ResultingTime">
           <label htmlFor="ResultingTime" id="ResultingTimeSideLabel">Resulting Time</label>
+          {format && <span id="Identifier">{resultIdentifier}</span>}
           <TimeResult name="Hour" state={hoursResult}/>
           <TimeResult name="Minute" state={minutesResult}/>
           <TimeResult name="Second" state={secondsResult}/>

@@ -24,7 +24,7 @@ export const ThemeButton = styled.button`
         }
     }
 
-    @media(max-width: 1200px){
+    @media(max-width: 1250px){
         right: 2rem;
         top: 3rem;
 
@@ -33,22 +33,27 @@ export const ThemeButton = styled.button`
         }
     }
 
-    @media(max-width: 1000px){
+    /* @media(max-width: 1000px){
         right: 2rem;
         top: 3rem;
 
         svg{
             font-size: 4rem;
         }
-    }
+    } */
 
-    @media(max-width: 1000px){
+    @media(max-width: 1030px){
         right: 1rem;
         top: 1.5rem;
-        z-index: 1;
-
+        
         svg{
             font-size: 3rem;
         }
+    }
+
+    @media(max-width: 800px){
+        right: 2rem;
+        top: 1.5rem;
+        z-index: 1;
     }
 `

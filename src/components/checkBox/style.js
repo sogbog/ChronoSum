@@ -20,6 +20,9 @@ export const Container = styled.div`
     }
 
     #checkboxDisplay{
+        display: flex;
+        justify-content: center;
+        align-items: center;
         svg{
             font-size: 3rem;
             color: ${({theme}) => theme.inputText};
@@ -28,16 +31,12 @@ export const Container = styled.div`
 
 //------------------ Media Queries ------------------
 
-    @media(max-width: 1900px){
-
-    }
-
-    @media(max-width: 1200px){
+    @media(max-width: 1250px){
         input{
             width: 1.5rem;
             height: 1.5rem;
-            left: 0px;
-            top: 0px;
+            left: 3px;
+            top: 5px;
             opacity: 0;
         }
     

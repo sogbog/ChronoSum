@@ -46,14 +46,14 @@ button:hover, a:hover{
     }
 }
 
-@media(max-width: 1200px){
+@media(max-width: 1250px){
     body{
         background: ${({theme}) => theme.backgroundGradient1200};
         background-color: ${({theme}) => theme.globalBackground};
     }
 }
 
-@media(max-width: 1000px){
+@media(max-width: 1030px){
     body{
         background: ${({theme}) => theme.backgroundGradient1000};
         background-color: ${({theme}) => theme.globalBackground};

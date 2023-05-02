@@ -48,14 +48,14 @@ export const Container = styled.div`
         }
     }
 
-    @media(max-width: 1200px){
+    @media(max-width: 1250px){
         span{
             width: 14rem;
             height: 6rem;
         }
     }    
 
-    @media(max-width: 1000px){
+    @media(max-width: 1030px){
         span{
             width: 12.4rem;
             height: 5rem;

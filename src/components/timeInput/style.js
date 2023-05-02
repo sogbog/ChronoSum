@@ -5,6 +5,7 @@ export const Container = styled.div`
     flex-direction: column;
     position: relative;
     justify-content: center;
+    align-items: center;
 
     input{
         width: 8rem;
@@ -52,10 +53,7 @@ export const Container = styled.div`
 
 //------------------ Media Queries ------------------
 
-    @media(max-width: 1200px){
-        align-items: center;
-        position: unset;
-
+    @media(max-width: 1250px){
         input{
             width: 7rem;
             height: 3.4rem;
@@ -71,12 +69,13 @@ export const Container = styled.div`
 
         .Warning{
             font-size: 1.6rem;
-            top: -1rem;
-            left: 43rem;
+            top: -2.6rem;
+            left: -4rem;
         }
     }
 
     @media(max-width: 800px){
+        position: unset;
         .Warning{
             top: -3.5rem;
             left: 2rem;

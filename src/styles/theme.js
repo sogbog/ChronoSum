@@ -28,6 +28,6 @@ export default{
         bigInputBackground: "#07000D",
         inputText: "#00F250",
         clockOpacity: 0.3,
-        buttonBackground: "#320056"
+        buttonBackground: "#36045A"
     }
 }
