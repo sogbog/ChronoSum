@@ -1,7 +1,6 @@
 import {Container, Menu, Tools} from "./style"
 import { Title } from "../../components/Title"
 import { Link } from "react-router-dom"
-import { CgMathPlus, CgMathMinus} from "react-icons/cg"
 import roman_clock from "../../assets/clock_face_roman.svg"
 
 export function Home(){
