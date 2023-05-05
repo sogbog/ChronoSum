@@ -6,6 +6,7 @@ export const Container = styled.header`
         margin: 2rem 0 0 5rem;
         position: relative;
         z-index: 2;
+        width: fit-content;
 
         a{
             font-family: "Orbitron";

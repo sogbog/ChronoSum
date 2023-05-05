@@ -11,18 +11,20 @@ export function Home(){
       </header>
 
       <Menu>
-        <div id="menuTitle">
-          <h2>Tools</h2>
-          <span>{"(Click on the site name to return to this page)"}</span>
-        </div>
+        <h2>Tools</h2>
 
         <Tools>
           <li>
-            <Link to={"/ChronoSum/SimpleSum"}>Common Sum</Link>
+            <Link to={"/ChronoSum/SimpleSum"}>Simple sum</Link>
             <span>Add to, or, subtract from a given time</span>
           </li>
-        </Tools>
 
+          <li>
+            <Link to={"/ChronoSum/DurationSum"}>Duration sum</Link>
+            <span>Get the total duration of a series of events</span>
+          </li>
+        </Tools>
+        <span>{"(Click on the page title to return to this page)"}</span>
       </Menu>
     </Container>
   )

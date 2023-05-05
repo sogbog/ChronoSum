@@ -17,7 +17,21 @@ body{
     height: 100vh;
     background: ${({theme}) => theme.backgroundGradient};
     background-color: ${({theme}) => theme.globalBackground};
-    color: ${({theme}) => theme.titles}
+    background-repeat: no-repeat;
+    color: ${({theme}) => theme.titles};
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: ${({theme}) => theme.bigInputBackground};
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: ${({theme}) => theme.buttonBackground};
+            border-radius: 8px;
+        }
 }
 
 a{
