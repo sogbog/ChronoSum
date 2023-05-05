@@ -111,6 +111,18 @@ export const Container = styled.li`
         width: 25rem;
         min-height: 41.1rem;
         padding: 1.5rem;
+
+        .Delete{
+            height: 2rem;
+            width: 2rem;
+            right: 6px;
+            top: 6px;
+
+            svg{
+                font-size: 2rem;
+            }
+        }
+
         .Name{
             >label{
                 font-size: 2rem;

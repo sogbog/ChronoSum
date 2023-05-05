@@ -63,8 +63,6 @@ export function NewEvent({}){
         setHour("")
         setMinute("")
         setSecond("")
-
-        console.log(event)
     }
 
     return(

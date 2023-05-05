@@ -76,7 +76,7 @@ export function DurationSum(){
                 <div id="resultsWrapper">
                     <div className="resultWrapper">
                         <label htmlFor="hours">Hours</label>
-                        <span id="hours"> {hours} </span>
+                        <input id="hours" value={hours} disabled></input>
                     </div>
 
                     <div className="resultWrapper">

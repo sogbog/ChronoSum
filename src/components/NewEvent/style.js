@@ -136,9 +136,21 @@ export const Container = styled.li`
     @media(min-width: 1501px){
         width: 25rem;
         padding: 1.5rem;
+
+        .Add{
+            height: 2rem;
+            width: 2rem;
+            right: 6px;
+            top: 6px;
+
+            svg{
+                font-size: 2rem;
+            }
+        }
+
         .Name{
             >label{
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
         }
 

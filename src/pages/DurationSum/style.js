@@ -109,7 +109,7 @@ export const Result= styled.div`
         align-items: center;
         position: relative;
 
-        span{
+        span, input{
             text-align: center;
             width: clamp(6rem, 30vw - 5rem, 15rem);
             height: 3rem;
@@ -127,6 +127,16 @@ export const Result= styled.div`
             font-family: "Monda";
             color: ${({theme}) => theme.titles};
         }
+
+        #hours{
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0 5px 4px 5px;
+
+            ::-webkit-scrollbar {
+                width: 0;
+            }
+        }
     }
 //------------------ Media Queries ------------------
 
@@ -136,7 +146,7 @@ export const Result= styled.div`
         }
 
         .resultWrapper{
-            span{
+            span, input{
                 height: 4rem;
                 font-size: 2.8rem;
                 padding: 2px 0 0 0;
@@ -156,7 +166,7 @@ export const Result= styled.div`
         }
 
         .resultWrapper{
-            span{
+            span, input{
                 height: 4rem;
                 font-size: 2.8rem;
                 padding: 2px 0 0 0;
@@ -180,7 +190,7 @@ export const Result= styled.div`
         }
 
         .resultWrapper{
-            span{
+            span, input{
                 height: 6rem;
                 font-size: 4.4rem;
                 padding: 0;
