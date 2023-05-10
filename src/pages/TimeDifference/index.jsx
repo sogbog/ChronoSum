@@ -105,8 +105,6 @@ export function TimeDifference(){
             setZone2(location.timeZoneName)
             offset2.current = offsets
         }
-
-        console.log(offset1.current, offset2.current)
         
         if(offset1.current != null & offset2.current != null){
             const timeDifference = (offset2.current - offset1.current)/3600000

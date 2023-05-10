@@ -25,8 +25,8 @@ export function Home(){
           </li>
 
           <li>
-            <Link to={"/ChronoSum/TimeDifference"}>Time Difference</Link>
-            <span>Get the difference between two different local times</span>
+            <Link to={"/ChronoSum/TimeDifference"}>Time Zone Difference</Link>
+            <span>Get the current time and the difference between two location's time zones</span>
           </li>
         </Tools>
         <span>{"(Click on the page title to return to this page)"}</span>
