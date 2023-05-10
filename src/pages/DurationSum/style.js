@@ -137,6 +137,10 @@ export const Result= styled.div`
                 width: 0;
             }
         }
+
+        #hours:disabled{
+            opacity: 1;
+        }
     }
 //------------------ Media Queries ------------------
 

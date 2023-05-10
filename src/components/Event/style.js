@@ -170,6 +170,10 @@ export const Field = styled.div`
         outline: 1px solid ${({theme}) => theme.inputText};
     }
 
+    input:disabled{
+        opacity: 1;
+    }
+
 //------------------ Media Queries ------------------
 
     @media(min-width: 801px){

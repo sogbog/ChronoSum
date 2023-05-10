@@ -23,6 +23,11 @@ export function Home(){
             <Link to={"/ChronoSum/DurationSum"}>Duration sum</Link>
             <span>Get the total duration of a series of events</span>
           </li>
+
+          <li>
+            <Link to={"/ChronoSum/TimeDifference"}>Time Difference</Link>
+            <span>Get the difference between two different local times</span>
+          </li>
         </Tools>
         <span>{"(Click on the page title to return to this page)"}</span>
       </Menu>
