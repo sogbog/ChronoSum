@@ -3,6 +3,7 @@ import { Home } from "../pages/Home";
 import { SimpleSum } from "../pages/SimpleSum"
 import { DurationSum } from "../pages/DurationSum";
 import { TimeDifference } from "../pages/TimeDifference";
+import { RecurrentEvents } from "../pages/RecurrentEvents";
 
 export function AppRoutes(){
     return(
@@ -12,6 +13,7 @@ export function AppRoutes(){
                 <Route path="/ChronoSum/SimpleSum" element={<SimpleSum/>}/>
                 <Route path="/ChronoSum/DurationSum" element={<DurationSum/>}/>
                 <Route path="/ChronoSum/TimeDifference" element={<TimeDifference/>}/>
+                <Route path="/ChronoSum/RecurrentEvents" element={<RecurrentEvents/>}/>
             </Routes>
         </BrowserRouter>
     )

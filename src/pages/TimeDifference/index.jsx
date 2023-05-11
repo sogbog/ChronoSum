@@ -9,25 +9,26 @@ const libs = ["places"]
 export function TimeDifference(){
 
     const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-    const ApiKey = "YOUR_API_KEY"
+    const ApiKey = import.meta.env.VITE_KEY
     
 
     const input1Ref = useRef()
     const input2Ref = useRef()
-    const [address1, setAddress1] = useState("")
-    const [address2, setAddress2] = useState("")
     const lat1 = useRef("")
     const lng1 = useRef("")
     const lat2 = useRef("")
     const lng2 = useRef("")
+    const offset1 = useRef()
+    const offset2 = useRef()
     const currentCounter1 = useRef()
     const currentCounter2 = useRef()
+
+    const [address1, setAddress1] = useState("")
+    const [address2, setAddress2] = useState("")
     const [date1, setDate1] = useState("Location 1 date and time")
     const [zone1, setZone1] = useState("Location 1 time zone")
     const [date2, setDate2] = useState("Location 2 date and time")
     const [zone2, setZone2] = useState("Location 2 time zone")
-    const offset1 = useRef()
-    const offset2 = useRef()
     const [difference, setDifference] = useState("Difference")
 
     const {isLoaded} = useLoadScript({

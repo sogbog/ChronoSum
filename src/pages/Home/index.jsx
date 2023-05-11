@@ -1,7 +1,6 @@
 import {Container, Menu, Tools} from "./style"
 import { Title } from "../../components/Title"
 import { Link } from "react-router-dom"
-import roman_clock from "../../assets/clock_face_roman.svg"
 
 export function Home(){
   return (
@@ -27,6 +26,11 @@ export function Home(){
           <li>
             <Link to={"/ChronoSum/TimeDifference"}>Time Zone Difference</Link>
             <span>Get the current time and the difference between two location's time zones</span>
+          </li>
+
+          <li>
+            <Link to={"/ChronoSum/RecurrentEvents"}>Recurrent Events</Link>
+            <span>Know when a recurrent event is going to happen given a starting date and period</span>
           </li>
         </Tools>
         <span>{"(Click on the page title to return to this page)"}</span>
