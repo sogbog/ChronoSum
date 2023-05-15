@@ -42,7 +42,7 @@ export const Month = styled.div`
 
     display: flex;
     justify-content: center;
-    gap: 1rem;  
+    gap: 1rem;
 
     text-align: center;
     padding-bottom: 4px;
@@ -63,6 +63,7 @@ export const Month = styled.div`
     span{
         font-family: "Orbitron";
         font-size: 1.6rem;
+        width: 9.8rem;
     }
 `
 
