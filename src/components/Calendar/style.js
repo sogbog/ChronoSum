@@ -8,6 +8,22 @@ export const Container = styled.div`
     background-color: ${({theme}) => theme.bigInputBackground};
 
     margin: 10rem 0 0 1.8rem;
+
+//------------------ Media Queries ------------------
+
+    @media(min-width: 501px){
+        padding: 1.5rem;
+    }
+
+    @media(min-width: 801px){
+        border-radius: 1rem;
+        padding: 2rem;
+    }
+
+    @media(min-width: 1801px){
+        border-radius: 1rem;
+        padding: 2.2rem;
+    }
 `
 
 export const Year = styled.div`
@@ -35,6 +51,58 @@ export const Year = styled.div`
     span{
         font-family: "Orbitron";
         font-size: 1.8rem;
+    }
+    
+//------------------ Media Queries ------------------
+
+    @media(min-width: 501px){
+        gap: 2rem;
+
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+
+        button{
+            svg{
+                font-size: 2.8rem;
+            }
+        }
+
+        span{
+            font-size: 2.5rem;
+        }
+    }
+
+    @media(min-width: 801px){
+
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+
+        button{
+            svg{
+                font-size: 3.5rem;
+            }
+        }
+
+        span{
+            font-size: 3.2rem;
+        }
+    }
+
+    @media(min-width: 1801px){
+        gap: 2.4rem;
+
+        padding-bottom: 14px;
+        margin-bottom: 14px;
+
+        button{
+            svg{
+                font-size: 4rem;
+            }
+        }
+
+        span{
+            font-size: 3.8rem;
+        }
     }
 `
 
@@ -65,6 +133,62 @@ export const Month = styled.div`
         font-size: 1.6rem;
         width: 9.8rem;
     }
+
+//------------------ Media Queries ------------------
+
+    @media(min-width: 501px){
+        gap: 1rem;
+
+        padding-bottom: 6px;
+        margin-bottom: 6px;
+        
+        button{
+            svg{
+                font-size: 2.8rem;
+            }
+        }
+
+        span{
+            font-size: 2.2rem;
+            width: 13.5rem
+        }
+    }
+
+    @media(min-width: 801px){
+        gap: 1rem;
+
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        
+        button{
+            svg{
+                font-size: 3.5rem;
+            }
+        }
+
+        span{
+            font-size: 2.8rem;
+            width: 17.2rem;
+        }
+    }
+
+    @media(min-width: 1801px){
+        gap: 1.6rem;
+
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+        
+        button{
+            svg{
+                font-size: 4rem;
+            }
+        }
+
+        span{
+            font-size: 3.4rem;
+            width: 20.9rem;
+        }
+    }
 `
 
 export const Week = styled.div`
@@ -79,6 +203,41 @@ export const Week = styled.div`
         text-align: center;
         font-family: "Monda";
         font-size: 1.4rem;
+    }
+
+//------------------ Media Queries ------------------
+
+    @media(min-width: 501px){
+        gap: 1.2rem;
+        grid-template-columns: repeat(7, 4.3rem);
+        padding-bottom: 9px;
+        margin-bottom: 1.2rem;
+
+        span{
+            font-size: 2rem;
+        }
+    }
+
+    @media(min-width: 801px){
+        gap: 1.6rem;
+        grid-template-columns: repeat(7, 5.4rem);
+        padding-bottom: 1rem;
+        margin-bottom: 2.4rem;
+
+        span{
+            font-size: 2.5rem;
+        }
+    }
+
+    @media(min-width: 1801px){
+        gap: 1.8rem;
+        grid-template-columns: repeat(7, 6rem);
+        padding-bottom: 1rem;
+        margin-bottom: 2.4rem;
+
+        span{
+            font-size: 2.8rem;
+        }
     }
 `
 
@@ -105,5 +264,34 @@ export const Days = styled.div`
         border: 1px solid ${({theme}) => theme.inputText};
     }
 
+//------------------ Media Queries ------------------
 
+    @media(min-width: 501px){
+        gap: 1.2rem;
+        grid-template-columns: repeat(7, 4.3rem);
+
+        button{
+            padding: 3px;
+            font-size: 2rem;
+        }
+    }
+
+    @media(min-width: 801px){
+        gap: 1.6rem;
+        grid-template-columns: repeat(7, 5.4rem);
+
+        button{
+            padding: 3px;
+            font-size: 2.5rem;
+        }
+    }
+
+    @media(min-width: 1801px){
+        gap: 1.8rem;
+        grid-template-columns: repeat(7, 6rem);
+
+        button{
+            font-size: 2.8rem;
+        }
+    }
 `

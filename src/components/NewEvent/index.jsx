@@ -81,13 +81,13 @@ export function NewEvent({}){
                     </Field>
 
                     <Field>
-                        <label htmlFor="hours">Minutes</label>
-                        <input type="text" id="hours" value={minute} onChange={e => handleStates(e.target.value, 'minute')}/>
+                        <label htmlFor="minutes">Minutes</label>
+                        <input type="text" id="minutes" value={minute} onChange={e => handleStates(e.target.value, 'minute')}/>
                     </Field>
 
                     <Field>
-                        <label htmlFor="hours">Seconds</label>
-                        <input type="text" id="hours" value={second} onChange={e => handleStates(e.target.value, 'second')}/>
+                        <label htmlFor="seconds">Seconds</label>
+                        <input type="text" id="seconds" value={second} onChange={e => handleStates(e.target.value, 'second')}/>
                     </Field>                    
                 </div>
             </div>

@@ -85,11 +85,11 @@ export function TimeDifference(){
         if(caller == 1){
 
             clearInterval(currentCounter1.current);
-            setDate1(`${localDate.getDate()}/${localDate.getMonth() + 1}/${localDate.getFullYear()} ${localDate.toLocaleTimeString()} ${weekDays[localDate.getDay()]}`)
+            setDate1(`${localDate.getMonth() + 1}/${localDate.getDate()}/${localDate.getFullYear()} ${localDate.toLocaleTimeString()} ${weekDays[localDate.getDay()]}`)
 
             currentCounter1.current = setInterval(() => {
                 localDate.setSeconds(localDate.getSeconds() + 1)
-                setDate1(`${localDate.getDate()}/${localDate.getMonth() + 1}/${localDate.getFullYear()} ${localDate.toLocaleTimeString()} ${weekDays[localDate.getDay()]}`)
+                setDate1(`${localDate.getMonth() + 1}/${localDate.getDate()}/${localDate.getFullYear()} ${localDate.toLocaleTimeString()} ${weekDays[localDate.getDay()]}`)
             }, 1000);
 
             setZone1(location.timeZoneName)
@@ -97,11 +97,11 @@ export function TimeDifference(){
 
         } else if(caller == 2){
             clearInterval(currentCounter2.current);
-            setDate2(`${localDate.getDate()}/${localDate.getMonth() + 1}/${localDate.getFullYear()} ${localDate.toLocaleTimeString()} ${weekDays[localDate.getDay()]}`)
+            setDate2(`${localDate.getMonth() + 1}/${localDate.getDate()}/${localDate.getFullYear()} ${localDate.toLocaleTimeString()} ${weekDays[localDate.getDay()]}`)
 
             currentCounter2.current = setInterval(() => {
                 localDate.setSeconds(localDate.getSeconds() + 1)
-                setDate2(`${localDate.getDate()}/${localDate.getMonth() + 1}/${localDate.getFullYear()} ${localDate.toLocaleTimeString()} ${weekDays[localDate.getDay()]}`)
+                setDate2(`${localDate.getMonth() + 1}/${localDate.getDate()}/${localDate.getFullYear()} ${localDate.toLocaleTimeString()} ${weekDays[localDate.getDay()]}`)
             }, 1000);
 
             setZone2(location.timeZoneName)

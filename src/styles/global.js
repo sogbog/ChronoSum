@@ -14,7 +14,7 @@ export default createGlobalStyle`
 }
 
 body{
-    height: 100vh;
+    min-height: 100vh;
     background: ${({theme}) => theme.backgroundGradient};
     background-color: ${({theme}) => theme.globalBackground};
     background-repeat: no-repeat;
