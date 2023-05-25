@@ -256,13 +256,19 @@ export const Days = styled.div`
         font-size: 1.4rem;
     }
 
-    .event{
+    .hasEvents{
         color: ${({theme}) => theme.inputText};
     }
     
     .selected{
         border: 1px solid ${({theme}) => theme.inputText};
     }
+
+    button:disabled{
+        cursor: default;
+    }
+
+
 
 //------------------ Media Queries ------------------
 

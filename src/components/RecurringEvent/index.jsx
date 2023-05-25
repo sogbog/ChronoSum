@@ -17,7 +17,7 @@ export function RecurringEvent({eventData}){
                 <button className="Delete" onClick={() => handleDelete()}><TiDeleteOutline/></button>
                 <span className="Name">{eventData.name}</span>
                 <div className="DurationWrapper">
-                    <span>Duration:</span>
+                    <span>Starting time:</span>
                     <div className="FieldsWrapper">
                         <Field>
                             <label htmlFor="hours">Hours</label>
