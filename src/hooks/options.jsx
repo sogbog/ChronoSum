@@ -7,10 +7,11 @@ function ContextWrapper({children}){
     const [format, setFormat] = useState(false)
     const [events, setEvents] = useState([])
     const [recurringEvents, setRecurringEvents] = useState([])
+    const [selectedDay, setSelectedDay] = useState()
 
     return(
         <OptionsContext.Provider value={{enabledFields, setEnabledFields, format, setFormat, 
-        events, setEvents, recurringEvents, setRecurringEvents}}>
+        events, setEvents, recurringEvents, setRecurringEvents, selectedDay, setSelectedDay}}>
             {children}
         </OptionsContext.Provider>
     )

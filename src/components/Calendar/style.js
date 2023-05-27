@@ -7,8 +7,6 @@ export const Container = styled.div`
     border-radius: 8px;
     background-color: ${({theme}) => theme.bigInputBackground};
 
-    margin: 10rem 0 0 1.8rem;
-
 //------------------ Media Queries ------------------
 
     @media(min-width: 501px){
@@ -254,6 +252,8 @@ export const Days = styled.div`
         border: none;
         padding: 3px;
         font-size: 1.4rem;
+
+        outline: ${({theme, selected}) => selected ?  `1px solid ${theme.inputText}` : ""};
     }
 
     .hasEvents{
@@ -261,13 +261,12 @@ export const Days = styled.div`
     }
     
     .selected{
-        border: 1px solid ${({theme}) => theme.inputText};
+        outline: 1px solid ${({theme}) => theme.inputText};
     }
 
     button:disabled{
         cursor: default;
     }
-
 
 
 //------------------ Media Queries ------------------

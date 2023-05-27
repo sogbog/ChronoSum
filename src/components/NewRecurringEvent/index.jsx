@@ -132,6 +132,15 @@ export function NewRecurringEvent({}){
             event.date = now
         }
 
+        if(event.yearPeriod == 0 && event.monthPeriod == 0 && event.dayPeriod == 0 &&
+            event.hourPeriod == 0 && event.minutePeriod == 0 && event.secondPeriod < 30){
+            if(!confirm("Time periods can crash your browser if you try to see the events of the day. If you dont select any day, you will be fine.")){
+                return
+            }
+        }
+
+        
+
         setRecurringEvents(prevState => [event, ...prevState])
         setName("")
         setHour("")

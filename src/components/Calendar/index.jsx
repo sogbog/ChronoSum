@@ -3,31 +3,6 @@ import { Container, Year, Month, Week, Days } from "./style";
 import {MdKeyboardArrowLeft, MdKeyboardArrowRight, MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight} from "react-icons/md"
 import { useOptions } from "../../hooks/options";
 
-
-
-/*
-PROTO LOGICA DA RENDER DO CALENDARIO
-
-vai ter um dia especifico que comecou o evento e uma certa hora e frequencia. Talvez transformar a hora inicial em segundos desde 00, e quantas horas faltam ate acabar o dia tambem.
-
-Vai ter um array(estado pra poder atualizar a renderizacao e mudar com qualquer funcao) que contem os dias, e cada dia vai ser um objeto contendo o evento(se existir). A funcao de render do calendario vai cuidar da criacao dos objetos dias no array e a funcao de createEvents vai adicionar os eventos nos dias corretos com as infos corretas
-
-So precisa contar a partir do primeiro dia do mes que esta sendo visto, entao um if para ver se o mes é antes ou depois do início, se for depois, renderiza os eventos, se não não
-
-Em um determinado mês que estiver sendo visualizado calcular os segundo que passou desde o primeiro dia do evento e a partir dai ver em que hora de cada dia que cai, e assim vai.
-
-Uma area do lado do calendario vai mostrar os detalhes de cada dia quando selecionado, quando clicar no botao ele vai chamar uma funcao de render dessa area e enviar os eventos do dia.
-
-Para saber se vai acontecer, checar primeiro se acontece no ano, depois no mes depois em cada dia separado. Isso usando o periodo em segundos(menos o comeco talvez?). Dai transforma para cada unidade quando for checar.
-
-Ver se acontece no ano, pegar o resto da divisao(%) do (ano do calendario - primeiro ano que aconteceu) pelo periodo em anos. Se for >1 , acontece nesse ano VER CERTINHO ISSO PQ COM ANO QUEBRADO NAO FUNCIONA DIREITO testar =>  (2023-2019)%1.5, eh pra dar que vai acontecer
-
-talvez 1.5 - (2023-2019)%1.5
-
-descobri(acho), verificar com (periodo - anos que se passaram desde o ultimo acontecimento), isso vai resultar em quantos anos faltam para acontecer denovo, depois de verificar o ano, verifica mes, dia...
-*/
-
-
 export function Calendar(){
     
     const fullDate = new Date()
@@ -39,7 +14,8 @@ export function Calendar(){
     let constructorDays = []
     let currentMonthSecondsElapsed = 0
 
-    const { recurringEvents } = useOptions()
+    const { recurringEvents, setSelectedDay } = useOptions()
+    const selected = useRef(null)
 
     const [calendarYear, setCalendarYear] = useState(calendarDefault.year)
     const [calendarMonth, setCalendarMonth] = useState(calendarDefault.month)
@@ -234,14 +210,14 @@ export function Calendar(){
         for(let i=0; i < monthDays; i++){
             constructorDays.push({events: [], id: i+1})
         }
-
         renderEvents()
     }
+
 
     function getSecondsSince0(parameter, event){
         if(parameter == "month"){
             let rawElapsed = ((calendarYear - 1)*31536000)
-
+            
             switch(calendarMonth){
             case 0:
                 
@@ -350,6 +326,7 @@ export function Calendar(){
             const leapOffset = leapYearsSinceOne*86400
 
             currentMonthSecondsElapsed = rawElapsed + leapOffset
+
         }
 
         if(parameter == "event"){
@@ -468,45 +445,27 @@ export function Calendar(){
         }
     }
 
+
     function renderEvents(){
         let daysWithEvents = constructorDays
 
         getSecondsSince0("month", null)
 
-        const event = {
-            date: new Date("2023-01-10T00:00:00"),
-            dayPeriod: 0,
-            hour: 0,
-            hourPeriod: 48,
-            id: 1684932959862,
-            minute: 0,
-            minutePeriod: 0,
-            monthPeriod: 0,
-            name: "Memes",
-            second: 0,
-            secondPeriod: 0,
-            yearPeriod: 0
-        }
-
-        //------------DENTRO DO MAP DE EVENTS------------
-
-        if(!checkIfHappens(88, event)){
-            setDays(constructorDays)
-            return
-        }
-
-        daysWithEvents.map(day => {
-            //console.log(checkIfHappens(day, event))
-            if(checkIfHappens(day, event)){
-                day.events.push(event)
+        recurringEvents && recurringEvents.map(event =>{
+            if(!checkIfHappens(88, event)){
+                setDays(constructorDays)
+                return
             }
+    
+            daysWithEvents.map(day => {
+                if(checkIfHappens(day, event)){
+                    day.events.push(event)
+                }
+            })
         })
-
-        //console.log(daysWithEvents)
 
         setDays(daysWithEvents)
     }
-
 
 
     function checkIfHappens(day, event){
@@ -514,15 +473,16 @@ export function Calendar(){
         if(day == 88){
 
             if((event.date.getFullYear() > calendarYear)){
-                // console.log("Ano do calendario menor que o primeiro do evento")
+
                 return false
+
             }else if(!(calendarYear > event.date.getFullYear()) && (event.date.getMonth() > calendarMonth)){
-                // console.log("Mes do calendario menor que o primeiro do evento")
+
                 return false
+
             }else{
                 return true
             }
-
         }
 
         if (day.id == "blank"){
@@ -541,19 +501,6 @@ export function Calendar(){
         const secondsElapsedSinceLast = secondsElapsedSinceEvent % periodInSeconds
         const secondsToEvent = periodInSeconds - secondsElapsedSinceLast
 
-        console.log(`
-        ----------------------------------------------------------------
-        Dia ${day.id}
-
-        Segundos de 0 ate evento: ${eventSecondsElapsed}
-        Segundos de 0 ate data: ${currentDaySecondsElapsed}
-        Segundos entre evento e data: ${secondsElapsedSinceEvent}
-        Intervalo em segundos: ${periodInSeconds}
-        Segundos desde o ultimo evento: ${secondsElapsedSinceLast}
-        Segundos ate o proximo evento: ${secondsToEvent}
-
-        `)
-
         if(secondsElapsedSinceEvent < -86399){
             return false
         }
@@ -566,9 +513,69 @@ export function Calendar(){
  
     }
 
+    
+    function handleDaySelect(day){
+        
+        if(selected.current){
+            const currentElement = document.getElementById(selected.current.day)
+            currentElement ? currentElement.classList.remove("selected") : ""
+
+            if(selected.current.day == day.id){
+                selected.current = null
+                setSelectedDay(null)
+                return
+            }
+        }
+
+        const dayElement = document.getElementById(day.id)
+        dayElement.classList.add("selected")
+        selected.current = {
+            day: day.id,
+            month: calendarMonth,
+            year: calendarYear,
+        }
+        
+        setSelectedDay({
+            day: day.id,
+            month: calendarMonth,
+            year: calendarYear,
+            events: day.events
+        })
+    }
+
+
+    function createClasses(hasEvents, day){
+        let classes = ""
+
+        if(hasEvents){
+            classes = classes + "hasEvents"
+        }
+
+        if(selected.current){
+            if(day == selected.current.day && calendarMonth == selected.current.month && calendarYear == selected.current.year){
+                classes = classes + " selected"
+            }
+        }
+
+        return classes
+    }
+
+    useEffect(() => {
+        // if(selected.current){
+        //     setSelectedDay({
+        //         day: selected.current.day,
+        //         month: selected.current.month,
+        //         year: selected.current.year,
+        //         events: selected.current.events
+        //     })
+        // }
+
+    }, [recurringEvents])
+
     useEffect(() => {
         renderCalendar()
-    }, [calendarMonth, calendarYear])
+    }, [calendarMonth, calendarYear, recurringEvents])
+
 
     return(
         <Container>
@@ -602,8 +609,11 @@ export function Calendar(){
             </Week>
 
             <Days>
-                {days.map((day, i) => day.id != "blank" ? <button key={i} className={day.events[0] ? "hasEvents" : ""}>{day.id}</button> : <button key={i} disabled></button>)}
+                {days.map((day, i) => day.id != "blank" ? 
+                <button key={i} className={createClasses(day.events[0], day.id)}  onClick={() => handleDaySelect(day)} id={day.id} selected={true}>{day.id}</button>
+                :
+                <button key={i} disabled></button>)}
             </Days>
         </Container>
     )
-}
+} 
