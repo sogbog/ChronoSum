@@ -6,9 +6,11 @@ import { TimeResult } from "../../components/TimeResult"
 import { CheckBox } from "../../components/CheckBox"
 import { SliderButton } from "../../components/SliderButton"
 import roman_clock from "../../assets/clock_face_roman.svg"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useOptions } from "../../hooks/options"
 import { BiCheckboxSquare, BiCheckbox } from "react-icons/bi"
+import { RiArrowGoBackLine } from "react-icons/ri"
+import { Link } from "react-router-dom"
 
 let time = {
   initialHours: 0,
@@ -526,6 +528,12 @@ export function SimpleSum(){
 
   return (
     <Container>
+      <div id="goBack">
+          <Link to={"/ChronoSum"}>
+              <RiArrowGoBackLine/>
+          </Link>
+      </div>
+      
       <header>
         <Title/>
 

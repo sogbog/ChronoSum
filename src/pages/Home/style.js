@@ -1,13 +1,22 @@
 import styled from "styled-components";
 
 export const Container = styled.div`    
+    
+    padding-bottom: 10rem;
+    
     >header{
         display: flex;
 
         a{
             width: max-content;
         }
+
+        svg{
+            display: none;
+        }
+
     }
+
 
 //------------------ Media Queries ------------------
     
@@ -43,11 +52,13 @@ export const Menu = styled.div`
         position: absolute;
         color: ${({theme}) => theme.titles};
         font-family: "Monda";
-        font-size: 8px;
-        bottom: -0.6rem;
-        right: 1rem;
-        background-color: ${({theme}) => theme.globalBackground};
-        padding: 0 2px;
+        font-size: 1.4rem;
+        bottom: -6rem;
+        left: 1rem;
+
+        a{
+            color: ${({theme}) => theme.inputText};
+        }
     }
 
 //------------------ Media Queries ------------------
@@ -60,9 +71,7 @@ export const Menu = styled.div`
         }
 
         >span{
-            font-size: 1.2rem;
-            bottom: -0.9rem;
-            padding: 0 3px;
+            font-size: 1.8rem;
         }
     }
 
@@ -74,10 +83,8 @@ export const Menu = styled.div`
         }
 
         >span{
-            font-size: 1.6rem;
-            bottom: -1.3rem;
-            right: 2rem;
-            padding: 0 5px;
+            bottom: -7rem;
+            font-size: 2.2rem;
         }
     }
 
@@ -89,8 +96,8 @@ export const Menu = styled.div`
         }
 
         >span{
-            font-size: 1.6rem;
-            bottom: -1.3rem;
+            bottom: -7rem;
+            font-size: 2.5rem;
         }
     }
 `

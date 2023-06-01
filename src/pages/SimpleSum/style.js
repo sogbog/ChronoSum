@@ -1,9 +1,30 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    
     >header{
         display: flex;
         justify-content: space-between;
+
+        header{
+            #buttonWrapper{
+                display: none;
+            }
+        }
+    }
+
+    #goBack{
+        position: relative;
+        z-index: 1;
+        a{
+            position: absolute;
+            left: 88rem;
+            top: 5.8rem;
+            svg{
+                color: ${({theme}) => theme.titles};
+                font-size: 4.5rem;
+            }
+        }
     }
 
     #ClockBackgroundDesktop{
@@ -142,6 +163,14 @@ export const Container = styled.div`
 //------------------ Media Queries ------------------
 
     @media(max-width: 1730px){
+
+        #goBack{
+            a{
+                left: 77rem;
+                top: 5.6rem;
+            }
+        } 
+        
         #options{
             flex-direction: column;
             margin: 3.5rem 35rem 0 0;
@@ -172,6 +201,18 @@ export const Container = styled.div`
     }
 
     @media(max-width: 1500px){
+
+        #goBack{
+            a{
+                left: unset;
+                right: 2.3rem;
+                top: 8.5rem;
+                svg{
+                    font-size: 3.8rem;
+                }
+            }
+        }        
+        
         #options{
             margin: 3.5rem 32rem 0 0;
         }
@@ -237,7 +278,18 @@ export const Container = styled.div`
         }
     }
 
-    @media(max-width: 1250px){        
+    @media(max-width: 1250px){    
+
+        #goBack{
+            a{
+                right: 2.2rem;
+                top: 8rem;
+                svg{
+                    font-size: 3.4rem;
+                }
+            }
+        }
+        
         #options{
             margin: 3rem 28rem 0 0;
             gap: 5px;
@@ -297,7 +349,18 @@ export const Container = styled.div`
         }
     }
 
-    @media(max-width: 1030px){        
+    @media(max-width: 1030px){    
+        
+        #goBack{
+            a{
+                right: 1.4rem;
+                top: 6rem;
+                svg{
+                    font-size: 2.5rem;
+                }
+            }
+        }
+
         #App{
             padding: 0 3.5rem;
             top: calc(55vh - 345px);
@@ -347,6 +410,13 @@ export const Container = styled.div`
         >header{
             flex-direction: column;
             justify-content: flex-start;
+        }
+
+        #goBack{
+            a{
+                right: 2.2rem;
+                top: 5.5rem;
+            }
         }
 
         #options{
@@ -499,7 +569,33 @@ export const Container = styled.div`
             display: none;
         }
     }
-`
+
+////------mobile heigth adjustment////------
+    @media(max-width: 800px){
+        max-height: 1000px;
+        
+        #App{
+            max-height: 1050px;
+        }
+    }
+    
+    @media(max-width: 687px){
+        max-height: 1200px;
+        
+        #App{
+            max-height: 1100px;
+        }
+    }
+    
+    @media(max-width: 419px){
+        max-height: 1700px;
+
+        #App{
+            max-height: 1600px;
+        }
+    }
+    `
+
 
 //-------------------------------------------------------------------------
 

@@ -33,9 +33,7 @@ export function DurationSum(){
                 const wholeHours = Math.floor(minute/60)
                 const extraMinutes = minute % 60
                 minute = extraMinutes
-                console.log(hour)
                 hour += wholeHours
-                console.log(wholeHours, minute)
             }
 
             if(hour >= 9007199254740991){
@@ -76,7 +74,7 @@ export function DurationSum(){
                 <div id="resultsWrapper">
                     <div className="resultWrapper">
                         <label htmlFor="hours">Hours</label>
-                        <input id="hours" value={hours} disabled></input>
+                        <span id="hours"> {hours} </span>
                     </div>
 
                     <div className="resultWrapper">

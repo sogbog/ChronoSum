@@ -12,8 +12,8 @@ export const Container = styled.div`
         a{
             width: max-content;
         }
-    }
 
+    }
 //------------------ Media Queries ------------------
 
 @media(max-width: 801px){
@@ -90,6 +90,7 @@ export const Result= styled.div`
     flex-direction: column;
     align-items: center;
     padding-bottom: 5rem;
+
     >h2{
         margin-top: 2.5rem;
         color: ${({theme}) => theme.inputText};
@@ -109,7 +110,7 @@ export const Result= styled.div`
         align-items: center;
         position: relative;
 
-        span, input{
+        span{
             text-align: center;
             width: clamp(6rem, 30vw - 5rem, 15rem);
             height: 3rem;
@@ -134,7 +135,7 @@ export const Result= styled.div`
             padding: 0 5px 4px 5px;
 
             ::-webkit-scrollbar {
-                width: 0;
+                display: none;
             }
         }
 

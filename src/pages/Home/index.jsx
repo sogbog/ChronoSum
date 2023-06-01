@@ -33,7 +33,7 @@ export function Home(){
             <span>Know when a recurrent event is going to happen given a starting date and period</span>
           </li>
         </Tools>
-        <span>{"(Click on the page title to return to this page)"}</span>
+        <span>Don't forget to check out the github repo<Link to={"https://github.com/sogbog/ChronoSum"} target="_blank"> here </Link>for more info on how to use</span>
       </Menu>
     </Container>
   )

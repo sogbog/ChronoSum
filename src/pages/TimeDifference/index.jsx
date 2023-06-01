@@ -58,7 +58,6 @@ export function TimeDifference(){
                 const latLng = `${lat1.current}, ${lng1.current}`
 
                 const response = await axios.get('https://maps.googleapis.com/maps/api/timezone/json?location=' + latLng + '&timestamp=' + timestamp + '&key=' + ApiKey)
-                console.log(response.data)
 
                 displayTime(caller, response.data)
 

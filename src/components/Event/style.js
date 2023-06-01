@@ -37,7 +37,7 @@ export const Container = styled.li`
         flex-direction: column;
         gap: 6px;
 
-        span{
+        >span{
             font-size: 1.2rem;
             font-family: "Monda";
             color: ${({theme}) => theme.titles};
@@ -53,7 +53,7 @@ export const Container = styled.li`
 
 //------------------ Media Queries ------------------
 
-@media(min-width: 801px){
+    @media(min-width: 801px){
         width: 22rem;
         gap: 1.6rem;
         min-height: 35.8rem;
@@ -77,7 +77,7 @@ export const Container = styled.li`
             flex-direction: column;
             gap: 6px;
 
-            span{
+            >span{
                 font-size: 1.8rem;
             }
         }
@@ -101,7 +101,7 @@ export const Container = styled.li`
             flex-direction: column;
             gap: 1rem;
 
-            span{
+            >span{
                 font-size: 2rem;
             }
         }
@@ -133,7 +133,7 @@ export const Container = styled.li`
             flex-direction: column;
             gap: 1rem;
 
-            span{
+            >span{
                 font-size: 2.5rem;
             }
         }
@@ -153,7 +153,7 @@ export const Field = styled.div`
         color: ${({theme}) => theme.titles};
     }
 
-    >input{
+    span{
         text-align: center;
         width: clamp(6rem, 30vw - 5rem, 15rem);
         height: 3rem;
@@ -163,15 +163,14 @@ export const Field = styled.div`
         color: ${({theme}) => theme.inputText};
         font-family: "Orbitron";
         font-size: 1.6rem;
-        padding: 0 5px;
-    }
+        padding: 4px 5px;
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
 
-    >input:focus{
-        outline: 1px solid ${({theme}) => theme.inputText};
-    }
-
-    input:disabled{
-        opacity: 1;
+        ::-webkit-scrollbar {
+            display: none;
+        }
     }
 
 //------------------ Media Queries ------------------
@@ -181,11 +180,12 @@ export const Field = styled.div`
             font-size: 1.6rem;
         }
 
-        >input{
+        span{
             width: clamp(6rem, 30vw - 5rem, 15rem);
             height: 4rem;
             font-size: 2.8rem;
             padding: 0 8px;
+            
         }
     }
 

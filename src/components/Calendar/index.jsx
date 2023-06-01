@@ -13,6 +13,7 @@ export function Calendar(){
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     let constructorDays = []
     let currentMonthSecondsElapsed = 0
+    let happenedThisMonth = false
 
     const { recurringEvents, setSelectedDay } = useOptions()
     const selected = useRef(null)
@@ -90,128 +91,6 @@ export function Calendar(){
 
         }
     } 
-
-    
-    function renderCalendar(){
-        const monthDays = getMonthDays()
-        constructorDays = []
-
-        let monthStartingDay 
-        const yearStartingDay = calculateFirstDay(calendarYear)
-
-        switch(calendarMonth){
-            case 0:
-                monthStartingDay = yearStartingDay
-            break
-
-            case 1:
-                monthStartingDay = yearStartingDay + 3
-            break
-
-            case 2:
-                //59
-                if(calendarYear % 4 == 0){
-                    monthStartingDay = yearStartingDay + 4
-                } else{
-                    monthStartingDay = yearStartingDay + 3
-                }
-            break
-
-            case 3:
-                //90
-                if(calendarYear % 4 == 0){
-                    monthStartingDay = yearStartingDay
-                } else{
-                    monthStartingDay = yearStartingDay + 6
-                }
-            break
-
-            case 4:
-                //120
-                if(calendarYear % 4 == 0){
-                    monthStartingDay = yearStartingDay + 2
-                } else{
-                    monthStartingDay = yearStartingDay + 1
-                }
-            break
-
-            case 5:
-                //151
-                if(calendarYear % 4 == 0){
-                    monthStartingDay = yearStartingDay + 5
-                } else{
-                    monthStartingDay = yearStartingDay + 4
-                }
-            break
-
-            case 6:
-                //181
-                if(calendarYear % 4 == 0){
-                    monthStartingDay = yearStartingDay
-                } else{
-                    monthStartingDay = yearStartingDay + 6
-                }
-            break
-
-            case 7:
-                //212
-                if(calendarYear % 4 == 0){
-                    monthStartingDay = yearStartingDay + 3
-                } else{
-                    monthStartingDay = yearStartingDay + 2
-                }
-            break
-
-            case 8:
-                //243
-                if(calendarYear % 4 == 0){
-                    monthStartingDay = yearStartingDay + 6
-                } else{
-                    monthStartingDay = yearStartingDay + 5
-                }
-            break
-
-            case 9:
-                //273
-                if(calendarYear % 4 == 0){
-                    monthStartingDay = yearStartingDay + 1
-                } else{
-                    monthStartingDay = yearStartingDay
-                }
-            break
-
-            case 10:
-                //304
-                if(calendarYear % 4 == 0){
-                    monthStartingDay = yearStartingDay + 4
-                } else{
-                    monthStartingDay = yearStartingDay + 3
-                }
-            break
-
-            case 11:
-                //334
-                if(calendarYear % 4 == 0){
-                    monthStartingDay = yearStartingDay + 6
-                } else{
-                    monthStartingDay = yearStartingDay + 5
-                }
-            break
-        }
-
-
-        if(monthStartingDay > 6){
-            monthStartingDay -= 7
-        }
-
-        for(let i=0; i < monthStartingDay; i++){
-            constructorDays.push({events: [], id: "blank"})
-        }
-        for(let i=0; i < monthDays; i++){
-            constructorDays.push({events: [], id: i+1})
-        }
-        renderEvents()
-    }
 
 
     function getSecondsSince0(parameter, event){
@@ -446,8 +325,131 @@ export function Calendar(){
     }
 
 
+    function renderCalendar(){
+        const monthDays = getMonthDays()
+        constructorDays = []
+
+        let monthStartingDay 
+        const yearStartingDay = calculateFirstDay(calendarYear)
+
+        switch(calendarMonth){
+            case 0:
+                monthStartingDay = yearStartingDay
+            break
+
+            case 1:
+                monthStartingDay = yearStartingDay + 3
+            break
+
+            case 2:
+                //59
+                if(calendarYear % 4 == 0){
+                    monthStartingDay = yearStartingDay + 4
+                } else{
+                    monthStartingDay = yearStartingDay + 3
+                }
+            break
+
+            case 3:
+                //90
+                if(calendarYear % 4 == 0){
+                    monthStartingDay = yearStartingDay
+                } else{
+                    monthStartingDay = yearStartingDay + 6
+                }
+            break
+
+            case 4:
+                //120
+                if(calendarYear % 4 == 0){
+                    monthStartingDay = yearStartingDay + 2
+                } else{
+                    monthStartingDay = yearStartingDay + 1
+                }
+            break
+
+            case 5:
+                //151
+                if(calendarYear % 4 == 0){
+                    monthStartingDay = yearStartingDay + 5
+                } else{
+                    monthStartingDay = yearStartingDay + 4
+                }
+            break
+
+            case 6:
+                //181
+                if(calendarYear % 4 == 0){
+                    monthStartingDay = yearStartingDay
+                } else{
+                    monthStartingDay = yearStartingDay + 6
+                }
+            break
+
+            case 7:
+                //212
+                if(calendarYear % 4 == 0){
+                    monthStartingDay = yearStartingDay + 3
+                } else{
+                    monthStartingDay = yearStartingDay + 2
+                }
+            break
+
+            case 8:
+                //243
+                if(calendarYear % 4 == 0){
+                    monthStartingDay = yearStartingDay + 6
+                } else{
+                    monthStartingDay = yearStartingDay + 5
+                }
+            break
+
+            case 9:
+                //273
+                if(calendarYear % 4 == 0){
+                    monthStartingDay = yearStartingDay + 1
+                } else{
+                    monthStartingDay = yearStartingDay
+                }
+            break
+
+            case 10:
+                //304
+                if(calendarYear % 4 == 0){
+                    monthStartingDay = yearStartingDay + 4
+                } else{
+                    monthStartingDay = yearStartingDay + 3
+                }
+            break
+
+            case 11:
+                //334
+                if(calendarYear % 4 == 0){
+                    monthStartingDay = yearStartingDay + 6
+                } else{
+                    monthStartingDay = yearStartingDay + 5
+                }
+            break
+        }
+
+
+        if(monthStartingDay > 6){
+            monthStartingDay -= 7
+        }
+
+        for(let i=0; i < monthStartingDay; i++){
+            constructorDays.push({events: [], id: "blank"})
+        }
+        for(let i=0; i < monthDays; i++){
+            constructorDays.push({events: [], id: i+1})
+        }
+        renderEvents()
+    }
+
+
     function renderEvents(){
         let daysWithEvents = constructorDays
+        happenedThisMonth = false
 
         getSecondsSince0("month", null)
 
@@ -469,7 +471,6 @@ export function Calendar(){
 
 
     function checkIfHappens(day, event){
-
         if(day == 88){
 
             if((event.date.getFullYear() > calendarYear)){
@@ -490,27 +491,165 @@ export function Calendar(){
         }
         
 
-        const periodInSeconds = event.secondPeriod + (event.minutePeriod*60) + (event.hourPeriod*3600) + (event.dayPeriod*86400) + (event.monthPeriod*2592000) + (event.yearPeriod*31536000)
-
-
+        const periodInSeconds = event.secondPeriod + (event.minutePeriod*60) + (event.hourPeriod*3600) + (event.dayPeriod*86400) + (event.monthPeriod*2592000) + (event.yearPeriod*31536000)        
+        
         const eventSecondsElapsed = getSecondsSince0("event", event)
         const dayOffset = (day.id - 1)*86400
         const currentDaySecondsElapsed = currentMonthSecondsElapsed + dayOffset
+        
+        const elapsedOffset = getUnevenOffset(event)
+        const secondsElapsedSinceFirst = currentDaySecondsElapsed - eventSecondsElapsed
 
-        const secondsElapsedSinceEvent = currentDaySecondsElapsed - eventSecondsElapsed
-        const secondsElapsedSinceLast = secondsElapsedSinceEvent % periodInSeconds
+        const secondsElapsedSinceLast = (secondsElapsedSinceFirst % periodInSeconds) + elapsedOffset
         const secondsToEvent = periodInSeconds - secondsElapsedSinceLast
 
-        if(secondsElapsedSinceEvent < -86399){
+
+        if (happenedThisMonth && (event.monthPeriod == 1 && periodInSeconds < 2622600 && day.id == 31)){
             return false
         }
 
-        if(secondsToEvent < 86400 || secondsElapsedSinceLast == 0 || secondsElapsedSinceEvent <= 0){
+
+        if(secondsElapsedSinceFirst < -86399){
+            return false
+        }
+
+
+        if(secondsToEvent < 86400 || secondsElapsedSinceLast == 0 || secondsElapsedSinceFirst <= 0){
+            happenedThisMonth = true
             return true
         }else{
             return false
         }
  
+    }
+
+
+    function getUnevenOffset(event){
+
+        const initialYear = event.date.getFullYear()%4  
+        const currentYear = (calendarYear - event.date.getFullYear()) + initialYear 
+        const yearsPassed = currentYear - initialYear
+        let leapYearsSinceFirst = Math.floor(currentYear/4) 
+        if((event.monthPeriod > 0 && currentYear%4 == 0) || (currentYear%4 == 0 && calendarMonth < 2 && event.yearPeriod > 0)){
+            leapYearsSinceFirst--
+        }
+
+        let yearOffset = 0
+        if(event.yearPeriod > 0){
+            yearOffset = leapYearsSinceFirst * -86400
+        }
+
+        let monthOffset = 0
+        const offsetConstant = (((yearsPassed) * 5) * -86400) - (leapYearsSinceFirst * 86400)
+
+        
+        if (event.monthPeriod > 0){
+
+            switch (calendarMonth) {
+                case 0:
+                    monthOffset = offsetConstant
+                break;
+    
+                case 1:
+                    monthOffset = offsetConstant -86400
+                break;
+    
+    
+                case 2:
+                    if(calendarYear % 4 == 0){
+                        monthOffset = offsetConstant
+                    } else{
+                        monthOffset = offsetConstant + 86400
+                    }
+                break;
+    
+                    
+                case 3:
+                    if(calendarYear % 4 == 0){
+                        monthOffset = offsetConstant - 86400
+                    } else{
+                        monthOffset = offsetConstant
+                    }
+                break;
+    
+    
+                case 4:
+                    if(calendarYear % 4 == 0){
+                        monthOffset = offsetConstant - 86400
+                    } else{
+                        monthOffset = offsetConstant
+                    }
+                break;
+    
+    
+                case 5:
+                    if(calendarYear % 4 == 0){
+                        monthOffset = offsetConstant - 172800
+                    } else{
+                        monthOffset = offsetConstant - 86400
+                    }
+                break;
+    
+    
+                case 6:
+                    if(calendarYear % 4 == 0){
+                        monthOffset = offsetConstant - 172800
+                    } else{
+                        monthOffset = offsetConstant - 86400
+                    }
+                break;
+    
+    
+                case 7:
+                    if(calendarYear % 4 == 0){
+                        monthOffset = offsetConstant - 259200
+                    } else{
+                        monthOffset = offsetConstant - 172800
+                    }
+                break;
+    
+    
+                case 8:
+                    if(calendarYear % 4 == 0){
+                        monthOffset = offsetConstant - 345600
+                    } else{
+                        monthOffset = offsetConstant - 259200
+                    }
+                break;
+    
+    
+                case 9:
+                    if(calendarYear % 4 == 0){
+                        monthOffset = offsetConstant - 345600
+                    } else{
+                        monthOffset = offsetConstant - 259200
+                    }
+                break;
+    
+    
+                case 10:
+                    if(calendarYear % 4 == 0){
+                        monthOffset = offsetConstant - 432000
+                    } else{
+                        monthOffset = offsetConstant - 345600
+                    }
+                break;
+    
+    
+                case 11:
+                    if(calendarYear % 4 == 0){
+                        monthOffset = offsetConstant - 432000
+                    } else{
+                        monthOffset = offsetConstant - 345600
+                    }
+                break;
+
+            }
+        }
+
+        const offset = yearOffset + monthOffset
+
+        return offset
     }
 
     
@@ -519,8 +658,8 @@ export function Calendar(){
         if(selected.current){
             const currentElement = document.getElementById(selected.current.day)
             currentElement ? currentElement.classList.remove("selected") : ""
-
-            if(selected.current.day == day.id){
+            
+            if(selected.current.day == day.id && selected.current.month == calendarMonth && selected.current.year == calendarYear){
                 selected.current = null
                 setSelectedDay(null)
                 return
@@ -560,17 +699,6 @@ export function Calendar(){
         return classes
     }
 
-    useEffect(() => {
-        // if(selected.current){
-        //     setSelectedDay({
-        //         day: selected.current.day,
-        //         month: selected.current.month,
-        //         year: selected.current.year,
-        //         events: selected.current.events
-        //     })
-        // }
-
-    }, [recurringEvents])
 
     useEffect(() => {
         renderCalendar()

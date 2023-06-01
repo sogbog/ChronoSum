@@ -21,17 +21,17 @@ export function RecurringEvent({eventData}){
                     <div className="FieldsWrapper">
                         <Field>
                             <label htmlFor="hours">Hours</label>
-                            <input type="text" id="hours" disabled value={eventData.hour}/>
+                            <span id="hours">{eventData.hour}</span>
                         </Field>
 
                         <Field>
                             <label htmlFor="hours">Minutes</label>
-                            <input type="text" id="hours" disabled value={eventData.minute}/>
+                            <span id="minutes">{eventData.minute}</span>
                         </Field>
 
                         <Field>
                             <label htmlFor="hours">Seconds</label>
-                            <input type="text" id="hours" disabled value={eventData.second}/>
+                            <span id="seconds">{eventData.second}</span>
                         </Field>                    
                     </div>
 
@@ -53,32 +53,32 @@ export function RecurringEvent({eventData}){
                 <div className="FieldsWrapper">
                     <Field>
                         <label htmlFor="yearPeriod">Years</label>
-                        <input type="text" id="yearPeriod" disabled value={eventData.yearPeriod}/>
+                        <span id="yearPeriod">{eventData.yearPeriod}</span>
                     </Field>
                     
                     <Field>
                         <label htmlFor="monthPeriod">Months</label>
-                        <input type="text" id="monthPeriod" disabled value={eventData.monthPeriod}/>
+                        <span id="monthPeriod">{eventData.monthPeriod}</span>
                     </Field>
                     
                     <Field>
                         <label htmlFor="dayPeriod">Days</label>
-                        <input type="text" id="dayPeriod" disabled value={eventData.dayPeriod}/>
+                        <span id="dayPeriod">{eventData.dayPeriod}</span>
                     </Field>
                     
                     <Field>
                         <label htmlFor="hourPeriod">Hours</label>
-                        <input type="text" id="hourPeriod" disabled value={eventData.hourPeriod} />
+                        <span id="hourPeriod">{eventData.hourPeriod}</span>
                     </Field>
 
                     <Field>
                         <label htmlFor="minutePeriod">Minutes</label>
-                        <input type="text" id="minutePeriod" disabled value={eventData.minutePeriod} />
+                        <span id="minutePeriod">{eventData.minutePeriod}</span>
                     </Field>
 
                     <Field>
                         <label htmlFor="secondPeriod">Seconds</label>
-                        <input type="text" id="secondPeriod" disabled value={eventData.secondPeriod} />
+                        <span id="secondPeriod">{eventData.secondPeriod}</span>
                     </Field>   
                 </div>
 

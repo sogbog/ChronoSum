@@ -18,18 +18,18 @@ export function Event({name, hours, minutes, seconds, id}){
                 <span>Duration:</span>
                 <div className="FieldsWrapper">
                     <Field>
-                        <label htmlFor="hours">Hours</label>
-                        <input type="text" id="hours" disabled value={hours}/>
+                        <label>Hours</label>
+                        <span>{hours}</span>
                     </Field>
 
                     <Field>
-                        <label htmlFor="hours">Minutes</label>
-                        <input type="text" id="hours" disabled value={minutes}/>
+                        <label>Minutes</label>
+                        <span>{minutes}</span>
                     </Field>
 
                     <Field>
-                        <label htmlFor="hours">Seconds</label>
-                        <input type="text" id="hours" disabled value={seconds}/>
+                        <label>Seconds</label>
+                        <span>{seconds}</span>
                     </Field>                    
                 </div>
             </div>

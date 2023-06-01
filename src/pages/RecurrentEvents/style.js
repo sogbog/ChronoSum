@@ -6,14 +6,6 @@ export const Container = styled.div`
     background: ${({theme}) => theme.upwardsGradient};
     min-height: 100vh;
 
-    header{
-        display: flex;
-
-        a{
-            width: max-content;
-        }
-    }
-
     #CalendarWrapper{
         display: flex;
         flex-direction: column;
@@ -24,14 +16,12 @@ export const Container = styled.div`
     }
 
 //------------------ Media Queries ------------------
-
+    
     @media(max-width: 800px){
         header{
             flex-direction: column;
             justify-content: flex-start;
         }
-
-        
     }
 
     @media(min-width: 1031px){

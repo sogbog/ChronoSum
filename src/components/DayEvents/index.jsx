@@ -5,7 +5,7 @@ import { useOptions } from "../../hooks/options";
 
 export function DayEvents(){
 
-    const { selectedDay, recurringEvents } = useOptions()
+    const { selectedDay } = useOptions()
     const [sortedInstances, setSortedInstances] = useState([])
 
     function getSecondsSince0(parameter, event){
@@ -246,6 +246,135 @@ export function DayEvents(){
     }
 
 
+    function getUnevenOffset(selectedDay, event){
+
+        const initialYear = event.date.getFullYear()%4  
+        const currentYear = (selectedDay.year - event.date.getFullYear()) + initialYear 
+        const yearsPassed = currentYear - initialYear
+        let leapYearsSinceFirst = Math.floor(currentYear/4) 
+        if((event.monthPeriod > 0 && currentYear%4 == 0) || (currentYear%4 == 0 && selectedDay.month < 2 && event.yearPeriod > 0)){
+            leapYearsSinceFirst--
+        }
+
+        let yearOffset = 0
+        if(event.yearPeriod > 0){
+            yearOffset = leapYearsSinceFirst * -86400
+        }
+
+        let monthOffset = 0
+        const offsetConstant = (((yearsPassed) * 5) * -86400) - (leapYearsSinceFirst * 86400)
+
+        
+        if (event.monthPeriod > 0){
+
+            switch (selectedDay.month) {
+                case 0:
+                    monthOffset = offsetConstant
+                break;
+    
+                case 1:
+                    monthOffset = offsetConstant -86400
+                break;
+    
+    
+                case 2:
+                    if(selectedDay.year % 4 == 0){
+                        monthOffset = offsetConstant
+                    } else{
+                        monthOffset = offsetConstant + 86400
+                    }
+                break;
+    
+                    
+                case 3:
+                    if(selectedDay.year % 4 == 0){
+                        monthOffset = offsetConstant - 86400
+                    } else{
+                        monthOffset = offsetConstant
+                    }
+                break;
+    
+    
+                case 4:
+                    if(selectedDay.year % 4 == 0){
+                        monthOffset = offsetConstant - 86400
+                    } else{
+                        monthOffset = offsetConstant
+                    }
+                break;
+    
+    
+                case 5:
+                    if(selectedDay.year % 4 == 0){
+                        monthOffset = offsetConstant - 172800
+                    } else{
+                        monthOffset = offsetConstant - 86400
+                    }
+                break;
+    
+    
+                case 6:
+                    if(selectedDay.year % 4 == 0){
+                        monthOffset = offsetConstant - 172800
+                    } else{
+                        monthOffset = offsetConstant - 86400
+                    }
+                break;
+    
+    
+                case 7:
+                    if(selectedDay.year % 4 == 0){
+                        monthOffset = offsetConstant - 259200
+                    } else{
+                        monthOffset = offsetConstant - 172800
+                    }
+                break;
+    
+    
+                case 8:
+                    if(selectedDay.year % 4 == 0){
+                        monthOffset = offsetConstant - 345600
+                    } else{
+                        monthOffset = offsetConstant - 259200
+                    }
+                break;
+    
+    
+                case 9:
+                    if(selectedDay.year % 4 == 0){
+                        monthOffset = offsetConstant - 345600
+                    } else{
+                        monthOffset = offsetConstant - 259200
+                    }
+                break;
+    
+    
+                case 10:
+                    if(selectedDay.year % 4 == 0){
+                        monthOffset = offsetConstant - 432000
+                    } else{
+                        monthOffset = offsetConstant - 345600
+                    }
+                break;
+    
+    
+                case 11:
+                    if(selectedDay.year % 4 == 0){
+                        monthOffset = offsetConstant - 432000
+                    } else{
+                        monthOffset = offsetConstant - 345600
+                    }
+                break;
+
+            }
+        }
+
+        const offset = yearOffset + monthOffset
+
+        return offset
+    }
+
+
     function getEventOcurrences(event, instances){
         const eventInstances = []
         
@@ -257,8 +386,10 @@ export function DayEvents(){
         const MonthSecondsElapsed = getSecondsSince0("month", null)
         const DaySecondsElapsed = MonthSecondsElapsed + dayOffset
 
-        const secondsElapsedSinceEvent = DaySecondsElapsed - eventSecondsElapsed
-        const secondsElapsedSinceLast = secondsElapsedSinceEvent % periodInSeconds
+        const elapsedOffset = getUnevenOffset(selectedDay, event)
+        const secondsElapsedSinceFirst = DaySecondsElapsed - eventSecondsElapsed
+
+        const secondsElapsedSinceLast = (secondsElapsedSinceFirst % periodInSeconds) + elapsedOffset
         const secondsToEvent = periodInSeconds - secondsElapsedSinceLast
 
 

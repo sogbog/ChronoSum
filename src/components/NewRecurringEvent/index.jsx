@@ -37,7 +37,7 @@ export function NewRecurringEvent({}){
             break
 
           case "monthPeriod":
-                if(value != "" && !(isNaN(parseInt(value))) && parseInt(value) < 12){
+                if(value != "" && !(isNaN(parseInt(value))) && parseInt(value) < 10001){
                     setMonthPeriod(parseInt(value))
                 }
             
@@ -45,7 +45,7 @@ export function NewRecurringEvent({}){
             break
 
           case "dayPeriod":
-                if(value != "" && !(isNaN(parseInt(value))) && parseInt(value) < 31){
+                if(value != "" && !(isNaN(parseInt(value))) && parseInt(value) < 10001){
                     setDayPeriod(parseInt(value))
                 }
             
@@ -53,10 +53,17 @@ export function NewRecurringEvent({}){
             break
 
           case 'hour': case 'hourPeriod':
-            if(value != "" && !(isNaN(parseInt(value))) && parseInt(value) < 24){
-                caller == "hour" ? setHour(parseInt(value)) : setHourPeriod(parseInt(value))
+            if(value != "" && !(isNaN(parseInt(value))) ){
+                if(caller == "hour"){
+                    if(parseInt(value) < 24){
+                        setHour(parseInt(value))
+                    }
+                }else if(parseInt(value) < 10001){
+                    setHourPeriod(parseInt(value))
+                }
             }
             
+
             if(caller == "hour"){
                 value == "" ? setHour(0) : ""
             } else{
@@ -67,8 +74,14 @@ export function NewRecurringEvent({}){
     
     
           case 'minute': case 'minutePeriod':
-            if(value != "" && !(isNaN(parseInt(value))) && parseInt(value) < 60){
-                caller == "minute" ? setMinute(parseInt(value)) : setMinutePeriod(parseInt(value))
+            if(value != "" && !(isNaN(parseInt(value))) && parseInt(value) < 10001){
+                if(caller == "minute"){
+                    if(parseInt(value) < 60){
+                        setMinute(parseInt(value))
+                    }
+                }else if(parseInt(value) < 10001){
+                    setMinutePeriod(parseInt(value))
+                }
             }         
 
             if(caller == "minute"){
@@ -81,8 +94,14 @@ export function NewRecurringEvent({}){
     
     
           case 'second': case 'secondPeriod':
-            if(value != "" && !(isNaN(parseInt(value))) && parseInt(value) < 60){
-                caller == "second" ? setSecond(parseInt(value)) : setSecondPeriod(parseInt(value))
+            if(value != "" && !(isNaN(parseInt(value))) && parseInt(value) < 10001){
+                if(caller == "second"){
+                    if(parseInt(value) < 60){
+                        setSecond(parseInt(value))
+                    }
+                }else if(parseInt(value) < 10001){
+                    setSecondPeriod(parseInt(value))
+                }
             }
 
             if(caller == "second"){
@@ -132,9 +151,15 @@ export function NewRecurringEvent({}){
             event.date = now
         }
 
+        if(event.monthPeriod > 0){
+            if(!confirm("Setting a month frequency can yield unpredictable results . Maybe some day i will fix it :D, until then, dont use this functionality if you want precise results.")){
+                return
+            }
+        }
+
         if(event.yearPeriod == 0 && event.monthPeriod == 0 && event.dayPeriod == 0 &&
             event.hourPeriod == 0 && event.minutePeriod == 0 && event.secondPeriod < 30){
-            if(!confirm("Time periods can crash your browser if you try to see the events of the day. If you dont select any day, you will be fine.")){
+            if(!confirm("Time periods too short can crash your browser if you try to see the events of the day. If you dont select any day, you will be fine.")){
                 return
             }
         }
