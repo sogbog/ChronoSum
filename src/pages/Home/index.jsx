@@ -24,6 +24,11 @@ export function Home(){
           </li>
 
           <li>
+            <Link to={"/ChronoSum/TimeBetween"}>Time Between</Link>
+            <span>Get the time elapsed between two dates</span>
+          </li>
+
+          <li>
             <Link to={"/ChronoSum/TimeDifference"}>Time Zone Difference</Link>
             <span>Get the current time and the difference between two location's time zones</span>
           </li>
