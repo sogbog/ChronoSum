@@ -29,6 +29,13 @@ e.g. : I want to know how much time i've spent studying this week. I just need t
 
 ![Duration Sum](https://i.imgur.com/nRqGWZZ.png)
 
+***Time Between:*** The perfect tool for calculating someones age. You can choose two specific dates, and it will calculate the difference between these two dates.
+One important thing to know, is that, due to the months having different lengths, the calculations will not always be 100% precise because it interprets a month as 30 days, but, overall, it is pretty reliable
+
+
+e.g. : A person who was born in 4th of june in 1888 passed away 16th of june of 1960. As you can see, this person died at 72.
+
+![Time Between](https://i.imgur.com/7XUulfC.png)
 
 ***Time Zone Difference:*** Ever wanted to know the time difference between two different locations on the globe? Well, now you can. You just need to search it in the input box and it wil tell you the time in these locations and the difference in hours between the two. Real time can have up to a second of delay
 

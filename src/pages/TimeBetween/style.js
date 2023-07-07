@@ -25,7 +25,7 @@ export const App = styled.div`
     margin-top: 2rem;
 `
 
-export const Date = styled.div`
+export const DateInput = styled.div`
     padding: 3rem 2.5rem;
     margin: 5rem 2.5rem 0 2rem;
     border: 1px solid ${({theme}) => theme.inputText};
@@ -142,6 +142,7 @@ export const Result = styled.div`
         .resultWrapper{
 
             span{
+                font-size: 2.8rem;
                 height: 4rem;
             }
 
@@ -168,6 +169,10 @@ export const Result = styled.div`
         }
 
         .resultWrapper{
+            span{
+                font-size: 3rem;
+            }
+
             label{
                 font-size: 2rem;
             }
