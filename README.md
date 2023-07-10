@@ -2,7 +2,7 @@
 
 A browser-only web app entirely developed by me(including styling) using React.js and styled components. The main functionality of this app is to perform various kinds of math operations using time. Full support for mobile and other resolutions
 
-For now, there are four tools and it will probably remain this way for a long time. I decided to move on to other projects to employ what I learned on this one, try out other things like TailwindCSS, React Frameworks and study more about backend. Maybe some day I will come back here to see what I can improve and fix.
+For now, there are five tools and it will probably remain this way for a long time. I decided to move on to other projects to employ what I learned on this one, try out other things like TailwindCSS, React Frameworks and study more about backend. Maybe some day I will come back here to see what I can improve and fix.
 
 
 ## Deploy
